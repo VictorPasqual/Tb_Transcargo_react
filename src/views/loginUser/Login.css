@@ -1,10 +1,16 @@
+#logo {
+    height: 45%;
+    margin-left: 100px;
+    margin-top: 20px;
+}
+
 #title {
     /* Entrar */
 
     position: absolute;
     width: 450px;
     height: 78px;
-    left: 63%;
+    left: 66%;
     top: 50px;
 
     font-family: 'K2D';
@@ -22,7 +28,7 @@
     position: absolute;
     width: 503px;
     height: 42px;
-    left: 1186px;
+    left: 1245px;
     top: 154px;
 
     font-family: 'K2D';
@@ -44,7 +50,7 @@
     position: absolute;
     width: 602px;
     height: 90px;
-    left: 53%;
+    left: 56%;
     top: 318px;
 
     background: rgba(54, 51, 51, 0.1);
@@ -58,7 +64,7 @@
     position: absolute;
     width: 602px;
     height: 90px;
-    left: 53%;
+    left: 56%;
     top: 450px;
 
     background: rgba(54, 51, 51, 0.1);
@@ -72,7 +78,7 @@
     position: absolute;
     width: 446px;
     height: 38px;
-    left: 1412px;
+    left: 1472px;
     top: 540px;
 
     font-family: 'M PLUS Code Latin';
@@ -93,7 +99,7 @@
     position: absolute;
     width: 377px;
     height: 80px;
-    left: 59%;
+    left: 62%;
     top: 760px;
     letter-spacing: -0.03em;
     background-color: #000000;
@@ -119,12 +125,12 @@
     width: 317px;
     height: 121px;
     left: 92px;
-    top: 445px;
+    top: 515px;
 
     font-family: 'Merriweather';
     font-style: normal;
     font-weight: 700;
-    font-size: 48px;
+    font-size: 46px;
     line-height: 60px;
 
     color: #FFFFFF;
@@ -138,7 +144,7 @@
     width: 446px;
     height: 38px;
     left: 97px;
-    top: 615px;
+    top: 66%;
 
     font-family: 'M PLUS Code Latin';
     font-style: normal;

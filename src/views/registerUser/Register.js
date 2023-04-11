@@ -10,7 +10,7 @@ const schema = Yup.object().shape({
   role: Yup.string().required('O campo role é obrigatório'),
   name: Yup.string().required('O campo nome é obrigatório'),
   email: Yup.string().email('E-mail inválido').required('O campo e-mail é obrigatório'),
-  cpf_cnpj: Yup.string()
+  cpfCnpj: Yup.string()
     .test('cpf-cnpj', 'CPF ou CNPJ inválido', (value) => cpfValidator.isValid(value) || cnpjValidator.isValid(value))
     .required('O campo CPF/CNPJ é obrigatório'),
   password: Yup.string()
@@ -39,7 +39,7 @@ const Register = () => {
     console.log(formData);
 
     try {
-      await schema.validate(formData, { abortEarly: false });
+      await schema.validate(formData);
       const response = await axios.post('http://localhost:8080/users', formData);
       console.log(response.data);
       toast.success('Você está registrado!');
@@ -96,16 +96,16 @@ const Register = () => {
           {errors.email && <span>{errors.email}</span>}
         </div>
         <div>
-          <label htmlFor="cpf_cnpj">CPF/CNPJ:</label>
+          <label htmlFor="cpf_Cnpj">CPF/CNPJ:</label>
           <input
             type="text"
-            id="cpf_cnpj"
-            name="cpf_cnpj"
+            id="cpfCnpj"
+            name="cpfCnpj"
             value={formData.cpfCnpj}
             onChange={handleInputChange}
             required
           />
-          {errors.cpf_cnpj && <span>{errors.cpf_cnpj}</span>}
+          {errors.cpfCnpj && <span>{errors.cpfCnpj}</span>}
         </div>
         <div>
           <label htmlFor="password">Senha:</label>

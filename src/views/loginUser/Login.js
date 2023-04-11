@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import transcargoLogo from '../../assets/transcargoLogo.png'
 import './Login.css';
 
 const Login = () => {
@@ -41,7 +42,7 @@ const Login = () => {
   return (
     <>
       <div id="faixa">
-        <img src="../../assets/transcargo.png" alt="Logo"/>
+        <img src={transcargoLogo} alt="Logo" id="logo"/>
         <h1 id="bemvindo">Bem-Vindo de volta!</h1>
         <p id="acesse">Acesse sua conta agora mesmo</p>
       </div>
