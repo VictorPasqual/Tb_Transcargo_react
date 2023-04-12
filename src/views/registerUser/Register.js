@@ -40,7 +40,7 @@ const Register = () => {
 
     try {
       await schema.validate(formData);
-      const response = await axios.post('http://localhost:8080/users', formData);
+      const response = await axios.post('http://localhost:8081/users', formData);
       console.log(response.data);
       toast.success('Você está registrado!');
       setFormData({ role: '' ,name: '', email: '', cpfCnpj: '', password: '', });
