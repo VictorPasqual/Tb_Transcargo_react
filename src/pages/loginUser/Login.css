@@ -1,61 +1,77 @@
+/* Estilos para desktop */
 #logo {
     height: 45%;
     margin-left: 100px;
     margin-top: 20px;
-}
-
-#title {
+  }
+  
+  #title {
     /* Entrar */
-
     position: absolute;
     width: 450px;
     height: 78px;
     left: 66%;
     top: 50px;
-
     font-family: 'K2D';
     font-style: normal;
     font-weight: 400;
     font-size: 64px;
     line-height: 83px;
-
     color: #000000;
-}
-
-#subtitulo {
+  }
+  
+  #subtitulo {
     /* Preencha seus dados */
-
     position: absolute;
     width: 503px;
     height: 42px;
     left: 1245px;
     top: 154px;
-
     font-family: 'K2D';
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
     line-height: 42px;
-
     /* identical to box height */
-
     color: rgba(175, 164, 164, 0.88);
-
-
-}
-
-#email {
+  }
+  
+  #iconEmail {
+    position: absolute;
+    width: 61.96px;
+    height: 48.92px;
+    left: 1038px;
+    top: 343px;
+    transform: rotate(0.07deg);
+  }
+  
+  #email {
     /* Rectangle 3 */
-
     position: absolute;
     width: 602px;
     height: 90px;
     left: 56%;
     top: 318px;
-
     background: rgba(54, 51, 51, 0.1);
     mix-blend-mode: hard-light;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px rgba(122, 118, 118, 0.25);
+  }
+  
+  #email::-webkit-input-placeholder  { 
+    color:rgb(105, 107, 105); 
+    font-size: 210%;
+    position: absolute; top: 30px; left: 150px; 
+  }
+  
+  #iconCadeado {
+    position: absolute;
+    width: 52px;
+    height: 59px;
+    left: 1045px;
+    top: 469px;
+    
+    transform: rotate(0.07deg);
+        
 }
 
 #password {
@@ -69,7 +85,14 @@
 
     background: rgba(54, 51, 51, 0.1);
     mix-blend-mode: hard-light;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);    
+}
+
+#password::-webkit-input-placeholder  { 
+    color:rgb(105, 107, 105); 
+    font-size: 210%;
+    position: absolute; top: 30px; left: 150px; 
+    
 }
 
 #losesenha {
@@ -119,40 +142,37 @@
 }
 
 #bemvindo {
-    /* Bem - Vindo  de volta! */
+    /* Bem - Vindo de volta! */
 
     position: absolute;
     width: 317px;
     height: 121px;
-    left: 92px;
+    left: 225px;
     top: 515px;
 
     font-family: 'Merriweather';
     font-style: normal;
     font-weight: 700;
-    font-size: 46px;
+    font-size: 65px;
     line-height: 60px;
 
     color: #FFFFFF;
 
 }
 
-#acesse {
-    /* Acesse sua conta agora mesmo */
-
+#devolta {
     position: absolute;
-    width: 446px;
-    height: 38px;
-    left: 97px;
-    top: 66%;
+    width: 317px;
+    height: 121px;
+    left: 225px;
+    top: 580px;
 
-    font-family: 'M PLUS Code Latin';
+    font-family: 'Merriweather';
     font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 30px;
+    font-weight: 700;
+    font-size: 65px;
+    line-height: 60px;
 
-    color: rgba(91, 88, 88, 0.73);
-
-
+    color: #FFFFFF;
 }
+

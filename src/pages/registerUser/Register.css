@@ -1,0 +1,19 @@
+#acesse {
+    /* Acesse sua conta agoramesmo */
+
+    position: absolute;
+    width: 446px;
+    height: 38px;
+    left: 97px;
+    top: 66%;
+
+    font-family: 'M PLUS Code Latin';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+
+    color: rgba(91, 88, 88, 0.73);
+
+
+}

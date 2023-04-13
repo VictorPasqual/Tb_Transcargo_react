@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { cpf as cpfValidator, cnpj as cnpjValidator } from 'cpf-cnpj-validator';
-
+import { REACT_APP_API_URL } from '../../api/transcargoApi';
 
 const schema = Yup.object().shape({
   role: Yup.string().required('O campo role é obrigatório'),
@@ -17,10 +17,16 @@ const schema = Yup.object().shape({
     .min(8, 'A senha deve ter pelo menos 8 caracteres')
     .max(100, 'A senha deve ter no máximo 100 caracteres')
     .required('O campo senha é obrigatório'),
-})
+});
 
 const Register = () => {
-  const [formData, setFormData] = useState({ role: '', name: '', email: '', cpfCnpj: '', password: '' });
+  const [formData, setFormData] = useState({
+    role: '',
+    name: '',
+    email: '',
+    cpfCnpj: '',
+    password: '',
+  });
   const [errors, setErrors] = useState({});
 
   const handleInputChange = async (event) => {
@@ -40,13 +46,15 @@ const Register = () => {
 
     try {
       await schema.validate(formData);
-      const response = await axios.post('http://localhost:8081/users', formData);
+      const response = await axios.post(`${REACT_APP_API_URL}/users`, formData);
       console.log(response.data);
       toast.success('Você está registrado!');
-      setFormData({ role: '' ,name: '', email: '', cpfCnpj: '', password: '', });
+      setFormData({ role: '', name: '', email: '', cpfCnpj: '', password: '' });
     } catch (error) {
       console.log(error);
-      if (error.name === 'SequelizeUniqueConstraintError') {
+      if (error.name === 'ValidationError') {
+        toast.error('Houve um problema. Verifique os campos abaixo.');
+      } else if (error.name === 'SequelizeUniqueConstraintError') {
         toast.error('Este e-mail já está cadastrado!');
       } else {
         toast.error('Houve um problema. Verifique os campos abaixo.');
@@ -60,66 +68,30 @@ const Register = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="role">Role:</label>
-          <input
-            type="text"
-            id="role"
-            name="role"
-            value={formData.role}
-            onChange={handleInputChange}
-            required
-          />
+          <input type="text" id="role" name="role" value={formData.role} onChange={handleInputChange} required />
           {errors.role && <span>{errors.role}</span>}
         </div>
         <div>
           <label htmlFor="name">Nome:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            required
-          />
+          <input type="text" id="name" name="name" value={formData.name} onChange={handleInputChange} required />
           {errors.name && <span>{errors.name}</span>}
-
         </div>
         <div>
           <label htmlFor="email">E-mail:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-          />
+          <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} required />
           {errors.email && <span>{errors.email}</span>}
         </div>
         <div>
-          <label htmlFor="cpf_Cnpj">CPF/CNPJ:</label>
-          <input
-            type="text"
-            id="cpfCnpj"
-            name="cpfCnpj"
-            value={formData.cpfCnpj}
-            onChange={handleInputChange}
-            required
-          />
+          <label htmlFor="cpfCnpj">CPF/CNPJ:</label>
+          <input type="text" id="cpfCnpj" name="cpfCnpj" value={formData.cpfCnpj} onChange={handleInputChange} required />
           {errors.cpfCnpj && <span>{errors.cpfCnpj}</span>}
         </div>
         <div>
           <label htmlFor="password">Senha:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleInputChange}
-            required
-          />
+          <input type="password" id="password" name="password" value={formData.password} onChange={handleInputChange} required />
           {errors.password && <span>{errors.password}</span>}
         </div>
-        <button type="submit">Cadastrar</button>
+        <button type="submit">Registrar</button>
       </form>
       <ToastContainer />
     </div>
