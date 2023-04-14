@@ -2,39 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Login from './pages/loginUser/Login';
 import Register from './pages/registerUser/Register';
-import Teste from './pages/teste/Home';
-import Home from './pages/home/Inicio'
+// import Teste from './pages/teste/Home';
+import Home from './pages/home/Home'
 import EntranceScreen from './components/loadingInicio/loadingInicio'; // Importe o componente EntranceScreen
-import Global from './styles/global';
+// import Global from './styles/global';
 
-const lorem =
-  'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, sed iure blanditiis voluptatum nulla quidem minus quam tempora obcaecati necessitatibus inventore! Vitae totam quam pariatur facilis fugit maxime adipisci eaque.';
-const data = [
-  {
-    id: Math.random(),
-    title: 'Box titulo 1',
-    text: lorem,
-    bgColor: '#D5CAFA',
-  },
-  {
-    id: Math.random(),
-    title: 'Box titulo 2',
-    text: lorem,
-    bgColor: '#EDA9A9',
-  },
-  {
-    id: Math.random(),
-    title: 'Box titulo 3',
-    text: lorem,
-    bgColor: '#F2EE8D',
-  },
-  {
-    id: Math.random(),
-    title: 'Box titulo 4',
-    text: lorem,
-    bgColor: '#9FEACD',
-  },
-];
 
 function App() {
   const [isLoading, setIsLoading] = useState(true); // Adicione o estado isLoading para controlar a exibição da tela de entrada
@@ -47,7 +19,7 @@ function App() {
 
   return (
     <>
-      <Global />
+      {/* <Teste boxData={data}/> */}
       {isLoading ? (
         // Renderize a tela de entrada enquanto isLoading for verdadeiro
         <EntranceScreen />

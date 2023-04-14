@@ -1,178 +1,188 @@
 /* Estilos para desktop */
 #logo {
-    height: 45%;
-    margin-left: 100px;
-    margin-top: 20px;
-  }
-  
-  #title {
-    /* Entrar */
-    position: absolute;
-    width: 450px;
-    height: 78px;
-    left: 66%;
-    top: 50px;
-    font-family: 'K2D';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 64px;
-    line-height: 83px;
-    color: #000000;
-  }
-  
-  #subtitulo {
-    /* Preencha seus dados */
-    position: absolute;
-    width: 503px;
-    height: 42px;
-    left: 1245px;
-    top: 154px;
-    font-family: 'K2D';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 42px;
-    /* identical to box height */
-    color: rgba(175, 164, 164, 0.88);
-  }
-  
-  #iconEmail {
-    position: absolute;
-    width: 61.96px;
-    height: 48.92px;
-    left: 1038px;
-    top: 343px;
-    transform: rotate(0.07deg);
-  }
-  
-  #email {
-    /* Rectangle 3 */
-    position: absolute;
-    width: 602px;
-    height: 90px;
-    left: 56%;
-    top: 318px;
-    background: rgba(54, 51, 51, 0.1);
-    mix-blend-mode: hard-light;
-    box-shadow: 0px 4px 4px rgba(122, 118, 118, 0.25);
-  }
-  
-  #email::-webkit-input-placeholder  { 
-    color:rgb(105, 107, 105); 
-    font-size: 210%;
-    position: absolute; top: 30px; left: 150px; 
-  }
-  
-  #iconCadeado {
-    position: absolute;
-    width: 52px;
-    height: 59px;
-    left: 1045px;
-    top: 469px;
-    
-    transform: rotate(0.07deg);
-        
+  height: 45%;
+  margin-left: 61px;
+  margin-top: 20px;
+}
+
+#title {
+  /* Entrar */
+  position: absolute;
+  width: 450px;
+  height: 78px;
+  left: 66%;
+  top: 50px;
+  font-family: 'K2D';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 83px;
+  color: #000000;
+}
+
+#subtitulo {
+  /* Preencha seus dados */
+  position: absolute;
+  width: 503px;
+  height: 42px;
+  left: 1245px;
+  top: 154px;
+  font-family: 'K2D';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 42px;
+  color: rgba(175, 164, 164, 0.88);
+}
+
+#iconEmail {
+  position: absolute;
+  width: 61.96px;
+  height: 48.92px;
+  left: 1090px;
+  top: 343px;
+  transform: rotate(0.07deg);
+}
+
+#iconCadeado {
+  position: absolute;
+  width: 52px;
+  height: 59px;
+  left: 1090px;
+  top: 469px;
+
+  transform: rotate(0.07deg);
+
+}
+
+
+#iconEmail {
+  left: 1090px;
+  top: 343px;
+}
+
+#iconCadeado {
+  left: 1090px;
+  top: 469px;
+}
+
+#email,
+#password {
+  /* Rectangle 3 */
+  position: absolute;
+  width: 602px;
+  height: 90px;
+  left: 56%;
+  background: rgba(54, 51, 51, 0.1);
+  mix-blend-mode: hard-light;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#email {
+  top: 318px;
 }
 
 #password {
-    /* Rectangle 3 */
-
-    position: absolute;
-    width: 602px;
-    height: 90px;
-    left: 56%;
-    top: 450px;
-
-    background: rgba(54, 51, 51, 0.1);
-    mix-blend-mode: hard-light;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);    
+  top: 450px;
 }
 
-#password::-webkit-input-placeholder  { 
-    color:rgb(105, 107, 105); 
-    font-size: 210%;
-    position: absolute; top: 30px; left: 150px; 
-    
+#email::placeholder,
+#password::placeholder {
+  color: rgb(105, 107, 105);
+  font-size: 210%;
+  position: absolute;
+  text-align: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #losesenha {
-    /* Esqueci minha senha. */
-
-    position: absolute;
-    width: 446px;
-    height: 38px;
-    left: 1472px;
-    top: 540px;
-
-    font-family: 'M PLUS Code Latin';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 25px;
-
-    color: rgba(91, 88, 88, 0.73);
-
-
+  /* Esqueci minha senha. */
+  position: absolute;
+  width: 446px;
+  height: 38px;
+  left: 1472px;
+  top: 540px;
+  font-family: 'M PLUS Code Latin';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  color: rgba(91, 88, 88, 0.73);
 }
 
 #botao {
-    /* Rectangle 7 */
-    font-family: 'Monda';
-    color: #ffffff;
-    font-style: normal;
-    position: absolute;
-    width: 377px;
-    height: 80px;
-    left: 62%;
-    top: 760px;
-    letter-spacing: -0.03em;
-    background-color: #000000;
-    border-radius: 156px;
+  /* Rectangle 7 */
+  font-family: 'Monda';
+  color: #ffffff;
+  font-style: normal;
+  position: absolute;
+  width: 377px;
+  height: 80px;
+  left: 62%;
+  top: 760px;
+  letter-spacing: -0.03em;
+  background-color: #000000;
+  border-radius: 156px;
 }
 
 #faixa {
-    /* Rectangle 1 */
-
-    position: absolute;
-    width: 882px;
-    height: 1024px;
-    left: -1px;
-    top: 0px;
-
-    background: #000;
+  /* Rectangle 1 */
+  position: absolute;
+  width: 782px;
+  height: 995px;
+  left: -1px;
+  top: 0px;
+  background: #000;
 }
 
 #bemvindo {
-    /* Bem - Vindo de volta! */
+  /* Bem - Vindo de volta! */
+  position: absolute;
+  width: 617px;
+  height: 121px;
+  left: 173px;
+  top: 500px;
 
-    position: absolute;
-    width: 317px;
-    height: 121px;
-    left: 225px;
-    top: 515px;
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 700px;
+  font-size: 45px;
+  line-height: 60px;
 
-    font-family: 'Merriweather';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 65px;
-    line-height: 60px;
-
-    color: #FFFFFF;
+  color: #FFFFFF;
 
 }
 
 #devolta {
-    position: absolute;
-    width: 317px;
-    height: 121px;
-    left: 225px;
-    top: 580px;
+  position: absolute;
+  width: 317px;
+  height: 121px;
+  left: 173px;
+  top: 565px;
 
-    font-family: 'Merriweather';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 65px;
-    line-height: 60px;
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 45px;
+  line-height: 60px;
 
-    color: #FFFFFF;
+  color: #FFFFFF;
 }
 
+#criarConta {
+  position: absolute;
+  width: 446px;
+  height: 38px;
+  left: 172px;
+  top: 690px;
+
+  font-family: 'M PLUS Code Latin';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 30px;
+  cursor: pointer;
+
+  color: rgba(91, 88, 88, 0.73);
+}

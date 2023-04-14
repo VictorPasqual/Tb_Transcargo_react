@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { cpf as cpfValidator, cnpj as cnpjValidator } from 'cpf-cnpj-validator';
-import { REACT_APP_API_URL } from '../../api/transcargoApi';
+import { REACT_APP_API_URL } from '../../api/APIs';
 
 const schema = Yup.object().shape({
   role: Yup.string().required('O campo role é obrigatório'),
@@ -51,6 +51,7 @@ const Register = () => {
       toast.success('Você está registrado!');
       setFormData({ role: '', name: '', email: '', cpfCnpj: '', password: '' });
     } catch (error) {
+      setFormData({ role: '', name: '', email: '', cpfCnpj: '', password: '' });
       console.log(error);
       if (error.name === 'ValidationError') {
         toast.error('Houve um problema. Verifique os campos abaixo.');
