@@ -3,7 +3,7 @@ import LogoInicio from '../../assets/logo.png';
 import Lupa from '../../assets/lupa.png';
 import IconProfile from '../../assets/user.png';
 import BackIconProfile from '../../assets/Ellipse.png';
-import { useMediaQuery } from 'react-responsive';
+import CaminhoesFundo from '../../assets/caminhoesFundo.jpg'
 import { useHistory } from 'react-router-dom';
 import './Home.css'; // Importe o arquivo de estilo CSS
 
@@ -11,9 +11,6 @@ const HomeScreen = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false); // Novo estado para controlar o menu de perfil
     const history = useHistory();
-    const isDesktop = useMediaQuery({ minWidth: 1024 });
-    const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
-    const isMobile = useMediaQuery({ maxWidth: 767 });
 
     const handleSearchClick = () => {
         setIsSearchOpen(!isSearchOpen);
@@ -29,36 +26,29 @@ const HomeScreen = () => {
     };
 
     return (
-        <>
-            {isDesktop && <p>Conteúdo para desktop</p>}
-
-            {isTablet && <p>Conteúdo para tablet</p>}
-
-            {isMobile && <p>Conteúdo para mobile</p>}
-
-            {/* Navbar */}
+        <div className='container'>       
             <nav className="navbar-container">
-                {/* Logo */}
+
                 <div className="logo-container">
                     <img src={LogoInicio} alt="Logo da Empresa" />
                 </div>
 
-                {/* Caminhões */}
+
                 <div className="navbar-item">
                     <h3 style={{ color: '#fff', fontSize: 26 }}>Caminhões</h3>
                 </div>
 
-                {/* Cargas */}
+
                 <div className="navbar-item">
                     <h3 style={{ color: '#fff', fontSize: 26 }}>Cargas</h3>
                 </div>
 
-                {/* Rotas */}
+
                 <div className="navbar-item">
                     <h3 style={{ color: '#fff', fontSize: 26 }}>Rotas</h3>
                 </div>
 
-                {/* Lupa de busca */}
+
                 <div className="search-container">
                     {isSearchOpen && (
                         <input type="text" placeholder="Buscar..." />
@@ -70,7 +60,7 @@ const HomeScreen = () => {
                     />
                 </div>
 
-                {/* Ícone de perfil */}
+
                 <div
                     className="profile-container"
                     style={{
@@ -85,7 +75,7 @@ const HomeScreen = () => {
                     <img src={IconProfile} className="profile" alt="Ícone de Perfil" />
                 </div>
 
-                {/* Menu de perfil */}
+
                 {isProfileMenuOpen && (
                     <div className="profile-menu-container">
                         <ul className="profile-menu">
@@ -96,9 +86,8 @@ const HomeScreen = () => {
                 )}
             </nav>
 
-            {/* Conteúdo da página */}
             <div> {/* Adicione o conteúdo da página aqui */}</div>
-        </>
+        </div>
     );
 };
 

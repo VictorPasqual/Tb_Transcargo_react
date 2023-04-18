@@ -5,17 +5,17 @@ import transcargoLogo from '../../assets/transcargoLogo.png'
 import iconEmail from '../../assets/logoemail.png'
 import iconCadeado from '../../assets/logocadeado.png'
 import { REACT_APP_API_URL } from '../../api/APIs'
-import { useMediaQuery } from 'react-responsive';
 import { useHistory } from "react-router-dom";
 import './Login.css';
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const isDesktop = useMediaQuery({ minWidth: 1024 });
-  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
-  const isMobile = useMediaQuery({ maxWidth: 767 });
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailIconVisible, setEmailIconVisible] = useState(true);
+  const [passwordIconVisible, setPasswordIconVisible] = useState(true);
+  const [emailFocused, setEmailFocused] = useState(false);
+  const [passwordFocused, setPasswordFocused] = useState(false);
 
   const history = useHistory();
 
@@ -28,8 +28,26 @@ const Login = () => {
     setPassword(target.value);
   };
 
+  const handleEmailFocus = () => {
+    setEmailFocused(true);
+  };
+
+  const handleEmailBlur = () => {
+    setEmailFocused(false);
+  };
+
+  const handlePasswordFocus = () => {
+    setPasswordFocused(true);
+  };
+
+  const handlePasswordBlur = () => {
+    setPasswordFocused(false);
+  };
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+    console.log(`Email: ${email}, Password: ${password}`);
 
     if (!email || !password) {
       toast.error('Preencha os campos de email e senha');
@@ -43,51 +61,68 @@ const Login = () => {
         toast.success('Você foi autenticado com sucesso.');
         // Navegar para a tela Home
         history.push('/home');
-        setEmail({ email: '' })
-        setPassword({ password: '' })
+        setEmail('')
+        setPassword('')
+        setEmailIconVisible(true);
+        setPasswordIconVisible(true);
       } else {
         toast.error('Credenciais inválidas');
+        setEmailIconVisible(true);
+        setPasswordIconVisible(true);
       }
     } catch (error) {
       console.error({ message: `Caiu no catch: ${error}` });
       toast.error('Não foi possível realizar o login');
-      setEmail({ email: '' })
-      setPassword({ password: '' })
+      setEmail('')
+      setPassword('')
+      setEmailIconVisible(true);
+      setPasswordIconVisible(true);
     }
   };
 
+
   return (
     <>
-      {isDesktop && <p>Conteúdo para desktop</p>}
-
-      {isTablet && <p>Conteúdo para tablet</p>}
-
-      {isMobile && <p>Conteúdo para mobile</p>}
-
-      <div id="telLogin">
-        <div id="faixa">
-          <img src={transcargoLogo} alt="Logo" id="logo" />
-          <h1 id="bemvindo">Bem-Vindo </h1>
-          <h1 id="devolta">de volta! </h1>
-          <p id="criarConta" onClick={() => history.push('/signup')}>Criar minha conta</p>
+      <div>
+        <div className="faixa">
+          <img src={transcargoLogo} alt="Logo" className="logo" />
+          <h1 className="bemvindo">Bem-Vindo </h1>
+          <h1 className="devolta">de volta! </h1>
+          <p className="criarConta" onClick={() => history.push('/signup')}>Criar minha conta</p>
         </div>
-        <div id="faixa-branca">
-          <h1 id="title">Entrar</h1>
-          <p id="subtitulo">Preencha seus Dados</p>
+        <div className="faixa-branca">
+          <h1 className="title">Entrar</h1>
+          <p className="subtitulo">Preencha seus Dados</p>
           <form onSubmit={handleSubmit}>
             <div>
-              <img src={iconEmail} alt="email" id="iconEmail" />
-              <input type="email" id="email" value={email} onChange={handleEmailChange} placeholder="Email" />
+              <input
+                type="email"
+                className="email"
+                placeholder="Email"
+                value={email}
+                onChange={handleEmailChange}
+                onFocus={handleEmailFocus}
+                onBlur={handleEmailBlur}
+              />
+              {!emailFocused && <img src={iconEmail} alt="Email Icon" className="iconEmail" />}
             </div>
             <div>
-              <img src={iconCadeado} alt="cadeado" id="iconCadeado" />
-              <input type="password" id="password" value={password} onChange={handlePasswordChange} placeholder="Senha" />
+              <input
+                type="password"
+                className="password"
+                placeholder="Senha"
+                value={password}
+                onChange={handlePasswordChange}
+                onFocus={handlePasswordFocus}
+                onBlur={handlePasswordBlur}
+              />
+              {!passwordFocused && <img src={iconCadeado} alt="Password Icon" className="iconCadeado" />}
             </div>
-            <p id="losesenha">Esqueci a Senha</p>
-            <button type="submit" id="botao">ENTRAR</button>
+            <p className="losesenha">Esqueci a Senha</p>
+            <button type="submit" className="botao">ENTRAR</button>
           </form>
         </div>
-      </div>
+      </div >
     </>
   );
 };

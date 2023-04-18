@@ -1,4 +1,12 @@
 /* Estilo para a navbar */
+
+.container {
+    background-image: url('../../assets/caminhoesFundo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 100%;
+}
+
 .navbar-container {
     display: flex;
     justify-content: space-between;
@@ -11,7 +19,7 @@
     position: absolute;
     width: 70px;
     height: 70px;
-    top: 78px;
+    top: 39px;
     margin-left: 13px;
     cursor: pointer;
 }

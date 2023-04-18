@@ -1,11 +1,163 @@
+
+@import url('https://fonts.googleapis.com/css2?family=K2D:wght@400;500;600;700&family=M+PLUS+Code+Latin:wght@300;400;500;600;700&display=swap');
+
+
+#logo {
+    height: 45%;
+    margin-left: 61px;
+    margin-top: 20px;
+}
+
+#crieConta {
+    position: absolute;
+    text-align: center;
+    width: 450px;
+    height: 78px;
+    left: 1122px;
+    top: -5px;
+
+    font-family: 'K2D', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 60px;
+    line-height: 83px;
+
+    color: #000000;
+
+}
+
+#preencha {
+    position: absolute;
+    text-align: center;
+    width: 303px;
+    height: 42px;
+    left: 1200px;
+    top: 111px;
+
+    font-family: 'K2D', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 27px;
+    line-height: 42px;
+    /* identical to box height */
+
+
+    color: rgba(175, 164, 164, 0.88);
+
+}
+
+#role,
+#name,
+#email,
+#password,
+#cpfCnpj {
+    /* Rectangle 3 */
+    position: absolute;
+    width: 580px;
+    height: 72px;
+    left: 1048px;
+    background: rgba(54, 51, 51, 0.1);
+    mix-blend-mode: hard-light;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#name {
+    top: 297px;
+    margin-top: 50px;
+}
+
+#cpfCnpj {
+    top: 417px;
+    margin-top: 30px;
+}
+
+#email {
+    top: 523px;
+    margin-top: 25px;
+}
+
+#password {
+    top: 650px;
+    margin-top: -1px;
+}
+
+#role::placeholder,
+#name::placeholder,
+#email::placeholder,
+#password::placeholder,
+#cpfCnpj::placeholder {
+    color: rgb(105, 107, 105);
+    font-family: 'M PLUS Code Latin';
+    font-size: 210%;
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#bemvindo {
+    /* Bem - Vindo de volta! */
+    position: absolute;
+    width: 617px;
+    height: 121px;
+    left: 174px;
+    top: 450px;
+
+    font-family: 'K2D', sans-serif;
+    font-style: normal;
+    font-weight: 700px;
+    font-size: 45px;
+    line-height: 60px;
+
+    color: #FFFFFF;
+}
+
+#devolta {
+    position: absolute;
+    width: 317px;
+    height: 121px;
+    left: 174px;
+    top: 499px;
+
+    font-family: 'K2D', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 45px;
+    line-height: 60px;
+
+    color: #FFFFFF;
+}
+
 #acesse {
-    /* Acesse sua conta agoramesmo */
+    /* Acesse sua conta agora mesmo */
 
     position: absolute;
     width: 446px;
     height: 38px;
-    left: 97px;
-    top: 66%;
+    left: 175px;
+    top: 58%;
+
+    font-family: 'M PLUS Code Latin';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    cursor: pointer;
+
+    color: rgba(91, 88, 88, 0.73);
+
+}
+
+#losesenha {
+    /* Esqueci minha senha. */
+
+
+    position: absolute;
+    width: 446px;
+    height: 38px;
+    left: 189px;
+    top: 820px;
 
     font-family: 'M PLUS Code Latin';
     font-style: normal;
@@ -15,5 +167,70 @@
 
     color: rgba(91, 88, 88, 0.73);
 
+}
+
+#cadastrar {
+    /* Rectangle 7 */
+
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 414px;
+    height: 68px;
+    left: 1138px;
+    top: 820px;
+
+    font-family: 'K2D', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 174.89%;
+    /* or 70px */
+
+    cursor: pointer;
+    align-items: center;
+    color: #FFFFFF;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), #000000;
+    border-radius: 156px;
+}
+
+#faixa {
+    /* Rectangle 1 */
+    position: absolute;
+    width: 782px;
+    height: 995px;
+    left: -1px;
+    top: 0px;
+    background: #000;
+}
+
+#entrar {
+    /* Rectangle 6 */
+
+
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 258px;
+    height: 94px;
+    left: 150px;
+    top: 735px;
+
+    background: #000000;
+    border: 1.5px solid #FFFFFF;
+    border-radius: 56px;
+
+    font-family: 'K2D', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 174.89%;
+    /* or 70px */
+
+    align-items: center;
+
+    cursor: pointer;
+
+    color: #FFFFFF;
 
 }
