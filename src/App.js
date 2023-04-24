@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Login from './pages/loginUser/Login';
 import Register from './pages/registerUser/Register';
+import Track from './pages/track-delivery/Track'
+import Payment from './pages/payment/PaymentScreen'
 // import Teste from './pages/teste/Home';
-import Home from './pages/home/Home'
+import Home from './pages/home/Home.js'
 import EntranceScreen from './components/loadingInicio/loadingInicio'; // Importe o componente EntranceScreen
-// import Global from './styles/global';
 
 
 function App() {
@@ -44,6 +45,8 @@ function App() {
             <Route exact path="/" component={Login} />
             <Route path="/signup" component={Register} />
             <Route path="/home" component={Home}/>
+            <Route path="/trackScreen" component={Track}/>
+            <Route path="/paymentScreen" component={Payment}/>
           </Switch>
         </Router>
       )}

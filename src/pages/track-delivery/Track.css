@@ -1,0 +1,53 @@
+.containerTrack {
+  position: absolute;
+  background-image: url('../../assets/backgroundTrack.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.imageTrack {
+  width: 1358px;
+  height: 262px;
+}
+
+.formTrack{
+  display: inline-block;
+}
+
+.notaFiscal {
+  width: 349px;
+  height: 58px;
+  margin-left: 51px;
+  margin-top: -100px;
+
+  background: #03A7B1;
+}
+
+.cpfCnpjTrack {
+  width: 587px;
+  height: 58px;
+  margin-left: 57px;
+  margin-top: -100px;
+
+  background: #03A7B1;
+}
+
+.rastrear {
+  width: 191px;
+  height: 58px;
+  margin-left: 1593px;
+  margin-top: -100px;
+
+  background: #03A7B1;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}

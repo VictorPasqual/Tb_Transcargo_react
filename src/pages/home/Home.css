@@ -1,109 +1,136 @@
-/* Estilo para a navbar */
+@import url('https://fonts.googleapis.com/css2?family=K2D:wght@400;500;600;700&family=M+PLUS+Code+Latin:wght@300;400;500;600;700&display=swap');
+
 
 .container {
+    position: absolute;
     background-image: url('../../assets/caminhoesFundo.jpg');
-    background-size: cover;
     background-repeat: no-repeat;
-    background-position: 100%;
-}
-
-.navbar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #000;
-    padding: 10px;
-}
-
-.profile {
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    top: 39px;
-    margin-left: 13px;
-    cursor: pointer;
-}
-
-.logo-container img {
-    height: 105px;
-    cursor: pointer;
-    /* Ajuste a altura da logo conforme necessário */
-}
-
-.navbar-item {
-    margin-left: 10px;
-    /* Adicione margem entre os itens da navbar conforme necessário */
-    font-family: 'Jura';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 22px;
-    line-height: 38px;
-    color: #FFFFFF;
-    cursor: pointer;
-}
-
-.search-container {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.profile-menu {
-    /* Adicione estilos para o menu de perfil aqui */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background-color: #000;
-    padding: 10px;
-}
-
-.profile-menu-item {
-    color: #FFFFFF;
-    /* Adicione estilos para os itens do menu de perfil aqui */
-    margin-bottom: 10px;
-    font-family: 'Jura';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    cursor: pointer;
-    /* Adicione outros estilos de acordo com suas preferências */
-}
-
-.profile-menu-item:hover {
-    /* Adicione estilos para os itens do menu de perfil quando estiverem em hover */
-    background-color: #333;
-    /* Adicione outros estilos de acordo com suas preferências */
-}
-
-.profile-menu-container {
-    /* Estilos para o container do menu de perfil */
-    position: absolute;
-    top: 155px; /* Ajuste a posição vertical do menu de acordo com sua necessidade */
-    right: 20px; /* Ajuste a posição horizontal do menu de acordo com sua necessidade */
-    z-index: 1; /* Certifique-se de que o menu esteja acima do conteúdo da página */
-}
-
-/* Estilos para o modal de perfil */
-.modal-container {
-    /* Estilos para o container do modal */
-    position: fixed;
+    background-size: cover;
+    height: 100%;
     top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Adicione um fundo semi-transparente para o modal */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2; /* Certifique-se de que o modal esteja acima do menu de perfil e do conteúdo da página */
 }
 
-.modal-content {
-    /* Estilos para o conteúdo do modal */
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    /* Adicione outros estilos de acordo com suas preferências */
+.logoHome {
+    position: absolute;
+    margin-left: 75px;
+    margin-top: 30px;
+    z-index: 999;
 }
-/* Outros estilos */
-/* Adicione outros estilos necessários para o conteúdo restante da página */
+
+.AgilidadeText {
+    position: absolute;
+    top: 285px;
+    left: 88px;
+    width: 807px;
+    height: 37px;
+    font-family: 'M PLUS Code Latin';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 53px;
+    letter-spacing: 4px;
+    text-align: right;
+    color: #FFFFFF;
+}
+
+
+.ConhecaText {
+    position: absolute;
+    width: 550px;
+    height: 77px;
+    left: 130px;
+    top: 692px;
+    font-family: 'M PLUS Code Latin';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 53px;
+    color: #fff;
+}
+
+.blackbox {
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 10px;
+    margin-top: 235px;
+    margin-left: 104px;
+    width: 785px;
+    height: 35px;
+    border-radius: 30px;
+}
+
+.blackbox2 {
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 10px;
+    margin-top: 0;
+    margin-left: 195px;
+    width: 692px;
+    height: 30px;
+    border-radius: 30px;
+}
+
+.blackbox3 {
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 10px;
+    margin-left: 519px;
+    width: 365px;
+    height: 30px;
+    border-radius: 30px;
+}
+
+.blackbox4 {
+    background-color: #000000;
+    color: #FFFFFF;
+    padding: 10px;
+    width: 410px;
+    height: 60px;
+    margin-top: 230px;
+    margin-left: 100px;
+}
+
+
+
+.servicos-menu {
+    position: absolute;
+    top: 80px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.servicos-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.servicos-menu li {
+    margin-bottom: 10px;
+}
+
+.servicos-menu li:last-child {
+    margin-bottom: 0;
+}
+
+.servicos-menu li a {
+    text-decoration: none;
+    color: #000;
+}
+
+.servicos-menu li a:hover {
+    color: #007bff;
+}
+
+.search-icon {
+    cursor: pointer;
+    margin-right: 80px;
+    margin-top: 35px;
+}

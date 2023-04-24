@@ -4,6 +4,7 @@ import axios from 'axios';
 import transcargoLogo from '../../assets/transcargoLogo.png'
 import iconEmail from '../../assets/logoemail.png'
 import iconCadeado from '../../assets/logocadeado.png'
+import novoFundo from '../../assets/novoFundo.png'
 import { REACT_APP_API_URL } from '../../api/APIs'
 import { useHistory } from "react-router-dom";
 import './Login.css';
@@ -84,8 +85,9 @@ const Login = () => {
   return (
     <>
       <div>
-        <div className="faixa">
+        <div>
           <img src={transcargoLogo} alt="Logo" className="logo" />
+          <img src={novoFundo} alt='faixa' className="faixa" />
           <h1 className="bemvindo">Bem-Vindo </h1>
           <h1 className="devolta">de volta! </h1>
           <p className="criarConta" onClick={() => history.push('/signup')}>Criar minha conta</p>
@@ -104,7 +106,7 @@ const Login = () => {
                 onFocus={handleEmailFocus}
                 onBlur={handleEmailBlur}
               />
-              {!emailFocused && <img src={iconEmail} alt="Email Icon" className="iconEmail" />}
+              {!emailFocused && !email && <img src={iconEmail} alt="Email Icon" className="iconEmail" />}
             </div>
             <div>
               <input
@@ -116,7 +118,7 @@ const Login = () => {
                 onFocus={handlePasswordFocus}
                 onBlur={handlePasswordBlur}
               />
-              {!passwordFocused && <img src={iconCadeado} alt="Password Icon" className="iconCadeado" />}
+              {!passwordFocused && !password && <img src={iconCadeado} alt="Password Icon" className="iconCadeado" />}
             </div>
             <p className="losesenha">Esqueci a Senha</p>
             <button type="submit" className="botao">ENTRAR</button>

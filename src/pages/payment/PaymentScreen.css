@@ -1,0 +1,69 @@
+.containerPayment {
+  position: absolute;
+  background-image: url('../../assets/fundoPayment.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.imagePayment {
+  margin-top: 100px;
+  margin-right: 640px;
+  margin-bottom: -590px;
+}
+
+.formsPayment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  margin-left: 275px;
+  width: 1300px;
+  height: 652px;
+  left: 234px;
+  top: 196px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.cpf {
+  margin-top: 20px;
+}
+
+.cnpj {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+input[type="radio"] {
+  margin-top: 7px;
+  height: 30px;
+}
+
+input {
+  width: 100%;
+  margin-left: 640px;
+  margin-bottom: 10px;
+  height: 58px;
+  left: 690px;
+  border-radius: 61px;
+}
+
+select {
+  width: 100%;
+  margin-left: 640px;
+  height: 58px;
+  margin-bottom: 12px;
+  border-radius: 61px;
+}
+
+
+h1 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #fff;
+}
