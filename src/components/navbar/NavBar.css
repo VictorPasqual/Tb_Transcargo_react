@@ -6,6 +6,7 @@
 }
 
 .nav-links {
+    z-index: 2;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,12 +18,14 @@
 }
 
 .nav-links li {
+    z-index: 2;
     font-family: 'K2D', sans-serif;
     font-size: 20px;
     margin-top: 25px;
 }
 
 .nav-links li a {
+    z-index: 2;
     display: block;
     text-decoration: none;
     color: #fff;
@@ -34,6 +37,14 @@
 }
 
 .nav-links li a:hover {
+    z-index: 2;
     border: 2px solid #666;
     border-radius: 20px;
+}
+
+.search-icon {
+    z-index: 2;
+    cursor: pointer;
+    margin-right: 80px;
+    margin-top: 35px;
 }

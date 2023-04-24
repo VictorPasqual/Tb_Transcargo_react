@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=K2D:wght@400;500;600;700&family=M+PLUS+Code+Latin:wght@300;400;500;600;700&display=swap');
+
+
 .containerTrack {
   position: absolute;
   background-image: url('../../assets/backgroundTrack.png');
@@ -10,43 +13,110 @@
   bottom: 0;
 }
 
+.containerTrack::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* ajuste a opacidade como desejar */
+}
+
+.acompanhe {
+  position: absolute;
+  width: 701px;
+  height: 8px;
+  left: 769px;
+  top: 179px;
+
+  font-family: 'K2D', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 57px;
+
+  color: #FFFFFF;
+}
+
+.informe {
+  position: absolute;
+  width: 1486px;
+  height: 76px;
+  left: 569px;
+  top: 570px;
+
+  font-family: 'K2D', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 38px;
+
+  color: #FFFFFF;
+}
+
 .imageTrack {
-  width: 1358px;
+  position: relative;
+  z-index: 2;
+  margin-top: 180px;
+  margin-left: 180px;
+  margin-bottom: -120px;
   height: 262px;
 }
 
-.formTrack{
-  display: inline-block;
+.imageTrack img {
+  width: 100%;
+  max-width: 1558px;
+}
+
+.formTrack {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 370px;
 }
 
 .notaFiscal {
-  width: 349px;
+  position: relative;
+  z-index: 2;
+  margin-left: -5px;
+  width: 450px;
   height: 58px;
-  margin-left: 51px;
-  margin-top: -100px;
-
   background: #03A7B1;
 }
 
 .cpfCnpjTrack {
-  width: 587px;
+  position: relative;
+  z-index: 2;
+  margin-left: 193px;
+  width: 450px;
   height: 58px;
-  margin-left: 57px;
-  margin-top: -100px;
-
   background: #03A7B1;
 }
 
-.rastrear {
-  width: 191px;
-  height: 58px;
-  margin-left: 1593px;
-  margin-top: -100px;
+.notaFiscal::placeholder,
+.cpfCnpjTrack::placeholder {
+  text-align: center;
+  font-family: 'M PLUS Code Latin';
+  color: black;
+  font-weight: bold; /* make the text bold */
+}
 
+.rastrear {
+  position: relative;
+  z-index: 2;
+  width: 250px;
+  height: 58px;
+  margin-left: 193px;
+  font-family: 'M PLUS Code Latin';
   background: #03A7B1;
 }
 
 .error-message {
+  position: relative;
+  z-index: 2;
   color: red;
   font-size: 14px;
   margin-top: 5px;

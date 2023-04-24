@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import rastreamento from '../../assets/rastreamento.png'
+import Navbar from '../../components/navbar/NavBar';
 import './Track.css';
 
 const TrackDelivery = () => {
@@ -21,12 +22,20 @@ const TrackDelivery = () => {
 
     return (
         <div className='containerTrack'>
-            <img src={rastreamento}/>
+            <Navbar />
+            <h3 className='acompanhe'>ACOMPANHE SUA ENTREGA
+            </h3>
+            <div className='imageTrack '>
+                <img src={rastreamento} alt='rastreamento' />
+            </div>
+            <p className='informe'>Informe o número da Nota Fiscal e o CPF/CNPJ do Destinatário:
+            </p>
             <form onSubmit={handleSubmit} className='formTrack'>
                 <input
                     type='text'
                     id='notaFiscal'
                     className='notaFiscal'
+                    placeholder='Nota Fiscal'
                     name='notaFiscal'
                     value={notaFiscal}
                     onChange={handleNotaFiscalChange}
@@ -36,12 +45,16 @@ const TrackDelivery = () => {
                     type='text'
                     id='cpfCnpj'
                     className='cpfCnpjTrack'
+                    placeholder='CNPJ/CPF somente numeros'
                     name='cpfCnpj'
                     value={cpfCnpj}
                     onChange={handleCpfCnpjChange}
                 />
 
-                <input type='submit' className='rastrear' value='Rastrear' />
+                <button type='submit'
+                    className='rastrear'
+                    value='Rastrear'>Rastrear
+                </button>
             </form>
         </div>
     );

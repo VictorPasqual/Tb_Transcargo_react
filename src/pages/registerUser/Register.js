@@ -111,7 +111,7 @@ const Register = () => {
               fontSize: '210%',
               position: 'absolute',
               textAlign: 'center',
-              left: 700,
+              left: 1350,
               top: 283,
               transform: 'translate(-50%, -50%)'
             }} name="role" value={formData.role} onChange={handleInputChange} required>
