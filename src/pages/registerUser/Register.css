@@ -5,9 +5,8 @@
     position: absolute;
     height: 45%;
     margin-left: 61px;
-    margin-top: 20px;
+    margin-top: 15px;
     z-index: 999;
-    cursor: pointer;
 }
 
 #crieConta {
@@ -158,8 +157,8 @@
     position: absolute;
     width: 617px;
     height: 121px;
-    left: 200px;
-    top: 430px;
+    left: 170px;
+    top: 470px;
 
     font-family: 'K2D', sans-serif;
     font-style: normal;
@@ -175,7 +174,7 @@
     width: 317px;
     height: 121px;
     left: 170px;
-    top: 490px;
+    top: 515px;
 
     font-family: 'K2D', sans-serif;
     font-style: normal;
@@ -193,7 +192,7 @@
     width: 446px;
     height: 38px;
     left: 175px;
-    top: 58%;
+    top: 59%;
 
     font-family: 'M PLUS Code Latin';
     font-style: normal;

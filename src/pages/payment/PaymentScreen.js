@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import Navbar from '../../components/navbar/NavBar';
 import ImageForms from '../../assets/iconTrack.png'
+import { useHistory } from "react-router-dom";
 import './PaymentScreen.css'
 
 const InfoAndPaymentScreen = () => {
+
+    const history = useHistory()
 
     // estados para os campos do formulário de informações
     const [cnpjOrCpf, setCnpjOrCpf] = useState('');
@@ -12,14 +15,6 @@ const InfoAndPaymentScreen = () => {
     const [address, setAddress] = useState('');
     const [category, setCategory] = useState('');
     const [shippingType, setShippingType] = useState('');
-
-    // estados para os campos do formulário de pagamento
-    const [cardNumber, setCardNumber] = useState('');
-    const [expirationDate, setExpirationDate] = useState('');
-    const [cvv, setCvv] = useState('');
-
-    // estado para controlar a exibição da etapa de pagamento
-    const [isPaymentStep, setIsPaymentStep] = useState(false);
 
     // estado para controlar a opção selecionada (CPF ou CNPJ)
     const [selectedOption, setSelectedOption] = useState('cpf');
@@ -34,19 +29,15 @@ const InfoAndPaymentScreen = () => {
             address.trim() === '' ||
             category.trim() === '' ||
             shippingType.trim() === ''
-        ) {
+        )
+        {
             alert('Por favor, preencha todos os campos.');
+            history.push('/paymentCheckout')
         } else {
             setIsPaymentStep(true);
         }
     };
 
-    // função para lidar com a submissão do formulário de pagamento
-    const handlePaymentSubmit = (event) => {
-        event.preventDefault();
-        // realizar o processamento de pagamento e exibir mensagem de sucesso
-        alert('Pagamento processado com sucesso!');
-    };
 
     // função para atualizar o estado de "cnpjOrCpf" com base na opção selecionada
     const handleOptionChange = (event) => {
@@ -58,6 +49,8 @@ const InfoAndPaymentScreen = () => {
         <div className="containerPayment">
             <Navbar />
             <h1 className='info'>Informações {'>'}{'>'}</h1>
+            <h1 className='pag'>Pagamento {'>'}{'>'}</h1>
+            <h1 className='fim'>Fim</h1>
             <form onSubmit={handleInfoSubmit} className='formsPayment'>
                 <div className='imagePayment'>
                     <img src={ImageForms} alt='ImageForms' />
@@ -65,7 +58,6 @@ const InfoAndPaymentScreen = () => {
                 <div className='cpf'>
                     <input
                         type="radio"
-                        
                         id="cpf"
                         name="document"
                         value="cpf"
@@ -77,7 +69,6 @@ const InfoAndPaymentScreen = () => {
                 <div className="cnpj">
                     <input
                         type="radio"
-                        
                         id="cnpj"
                         name="document"
                         value="cnpj"
@@ -88,30 +79,30 @@ const InfoAndPaymentScreen = () => {
                 </div>
 
                 {
-        selectedOption === 'cpf' && (
-            <input
-                type="text"
-                id="cpf"
-                className='cpf-input'
-                placeholder="CPF"
-                value={cnpjOrCpf}
-                onChange={(event) => setCnpjOrCpf(event.target.value)}
-            />
-        )
-    }
+                    selectedOption === 'cpf' && (
+                        <input
+                            type="text"
+                            id="cpf"
+                            className='cpf-input'
+                            placeholder="CPF"
+                            value={cnpjOrCpf}
+                            onChange={(event) => setCnpjOrCpf(event.target.value)}
+                        />
+                    )
+                }
 
-    {
-        selectedOption === 'cnpj' && (
-            <input
-                type="text"
-                id="cnpj"
-                className='cnpj-input'
-                placeholder="CNPJ"
-                value={cnpjOrCpf}
-                onChange={(event) => setCnpjOrCpf(event.target.value)}
-            />
-        )
-    }
+                {
+                    selectedOption === 'cnpj' && (
+                        <input
+                            type="text"
+                            id="cnpj"
+                            className='cnpj-input'
+                            placeholder="CNPJ"
+                            value={cnpjOrCpf}
+                            onChange={(event) => setCnpjOrCpf(event.target.value)}
+                        />
+                    )
+                }
 
                 <input
                     input
@@ -161,46 +152,8 @@ const InfoAndPaymentScreen = () => {
                     <option value="teste3">teste3</option>
                 </select>
 
-    {
-        isPaymentStep && (
-            <>
-                <h1>Pagamento</h1>
-                <form onSubmit={handlePaymentSubmit}>
-                    <input
-                        type="text"
-                        id="card-number"
-                        className="card-number-input"
-                        placeholder="Número do cartão"
-                        value={cardNumber}
-                        onChange={(event) => setCardNumber(event.target.value)}
-                    />
-                    <input
-                        type="text"
-                        id="expiration-date"
-                        className="expiration-date-input"
-                        placeholder="Data de validade (MM/AA)"
-                        value={expirationDate}
-                        onChange={(event) => setExpirationDate(event.target.value)}
-                    />
-                    <input
-                        type="text"
-                        id="cvv"
-                        className="cvv-input"
-                        placeholder="CVV"
-                        value={cvv}
-                        onChange={(event) => setCvv(event.target.value)}
-                    />
-                    <button type="submit">Pagar</button>
-                </form>
-            </>
-        )
-    }
 
-    {
-        !isPaymentStep && (
-            <button type="submit" className='buttonContinuar'>Continuar</button>
-        )
-    }
+                <button type="submit" className='buttonContinuar'>Continuar</button>
             </form >
         </div >
 

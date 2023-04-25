@@ -69,23 +69,23 @@ const Register = () => {
     console.log(formData);
 
 
-    try {
-      await schema.validate(formData);
-      const response = await axios.post(`${REACT_APP_API_URL}/users`, formData);
-      console.log(response.data);
-      toast.success('Você está registrado!');
-      setFormData({ role: '', name: '', email: '', cpfCnpj: '', password: '' });
-    } catch (error) {
-      setFormData({ role: '', name: '', email: '', cpfCnpj: '', password: '' });
-      console.log(error);
-      if (error.name === 'ValidationError') {
-        toast.error('Houve um problema. Verifique os campos abaixo.');
-      } else if (error.name === 'SequelizeUniqueConstraintError') {
-        toast.error('Este e-mail já está cadastrado!');
-      } else {
-        toast.error('Houve um problema. Verifique os campos abaixo.');
-      }
-    }
+    // try {
+    //   await schema.validate(formData);
+    //   const response = await axios.post(`${REACT_APP_API_URL}/users`, formData);
+    //   console.log(response.data);
+    //   toast.success('Você está registrado!');
+    //   setFormData({ role: '', name: '', email: '', cpfCnpj: '', password: '' });
+    // } catch (error) {
+    //   setFormData({ role: '', name: '', email: '', cpfCnpj: '', password: '' });
+    //   console.log(error);
+    //   if (error.name === 'ValidationError') {
+    //     toast.error('Houve um problema. Verifique os campos abaixo.');
+    //   } else if (error.name === 'SequelizeUniqueConstraintError') {
+    //     toast.error('Este e-mail já está cadastrado!');
+    //   } else {
+    //     toast.error('Houve um problema. Verifique os campos abaixo.');
+    //   }
+    // }
   };
 
   return (
