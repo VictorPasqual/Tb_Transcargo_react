@@ -21,7 +21,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(49, 48, 0, 0.4);
   /* ajuste a opacidade como desejar */
 }
 
@@ -30,7 +30,7 @@
   width: 701px;
   height: 8px;
   left: 769px;
-  top: 179px;
+  top: 170px;
 
   font-family: 'K2D', sans-serif;
   font-style: normal;
@@ -46,7 +46,7 @@
   width: 1486px;
   height: 76px;
   left: 569px;
-  top: 570px;
+  top: 560px;
 
   font-family: 'K2D', sans-serif;
   font-style: normal;
@@ -60,7 +60,7 @@
 .imageTrack {
   position: relative;
   z-index: 2;
-  margin-top: 180px;
+  margin-top: 170px;
   margin-left: 180px;
   margin-bottom: -120px;
   height: 262px;

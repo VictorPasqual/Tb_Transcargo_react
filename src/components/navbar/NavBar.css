@@ -14,14 +14,14 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    margin-left: 700px;
 }
 
 .nav-links li {
     z-index: 2;
     font-family: 'K2D', sans-serif;
     font-size: 20px;
-    margin-top: 25px;
+    margin-top: 28px;
+    text-shadow: 1px 1px 1px #000000;
 }
 
 .nav-links li a {
@@ -43,8 +43,20 @@
 }
 
 .search-icon {
+    display: flex;
     z-index: 2;
     cursor: pointer;
     margin-right: 80px;
-    margin-top: 35px;
+    margin-top: 38px;
+    flex-direction: row-reverse;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    margin-left: 45px;
+    margin-right: 20px;
 }

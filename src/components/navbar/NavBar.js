@@ -7,6 +7,8 @@ import './NavBar.css'
 const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
+    const [marginLeft, setMarginLeft] = useState('695px');
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
     const history = useHistory()
 
     const handleServicosClick = () => {
@@ -14,7 +16,18 @@ const Navbar = () => {
     };
 
     const handleSearchClick = () => {
-        setShowSearch(!showSearch);
+        if (!showSearch && !isSearchOpen) {
+            setShowSearch(!showSearch);
+            setMarginLeft('500px');
+            setIsSearchOpen(true);
+            console.log(showSearch, marginLeft, isSearchOpen)
+        }
+        else {
+            setShowSearch(!showSearch);
+            setMarginLeft('695px');
+            setIsSearchOpen(false);
+            console.log(showSearch, marginLeft, isSearchOpen)
+        }
     };
 
     const handleSearchSubmit = (event) => {
@@ -27,7 +40,7 @@ const Navbar = () => {
             <div className="logoHome" onClick={() => history.push('/home')}>
                 <a href="#"><img src={logoTrans} alt="logoTrans" className='logoTrans' /></a>
             </div>
-            <ul class="nav-links">
+            <ul className="nav-links" style={{ marginLeft }}>
                 <li><a href="#" onClick={() => history.push('/home')}>Início</a></li>
                 <li><a href="#">Quem Somos</a></li>
                 <li>
@@ -47,8 +60,8 @@ const Navbar = () => {
             <div className="search-icon">
                 <a href="#" onClick={handleSearchClick}><img src={iconSearch} alt="iconSearch" /></a>
                 {showSearch && (
-                    <div className="search-bar">
-                        <form onSubmit={handleSearchSubmit}>
+                    <div className="search-bar"  >
+                        <form onSubmit={handleSearchSubmit} >
                             <input type="text" placeholder="Search..." />
                             <button type="submit">Search</button>
                         </form>

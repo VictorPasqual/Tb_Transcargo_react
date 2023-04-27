@@ -41,7 +41,7 @@
 }
 
 
-.info {
+.infoCheckout {
   position: absolute;
   width: 616px;
   height: 33px;
@@ -58,7 +58,7 @@
 
 }
 
-.pag {
+.pagCheckout {
   position: absolute;
   width: 616px;
   height: 33px;
@@ -74,7 +74,7 @@
   color: #FFFFFF;
 }
 
-.fim {
+.fimCheckout {
   position: absolute;
   width: 616px;
   height: 33px;

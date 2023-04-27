@@ -1,0 +1,134 @@
+.truck-carousel-content {
+    position: absolute;
+    background-image: url('../../assets/backgroundTrack.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.truck-carousel-content::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.35); /* aqui você pode definir a cor do fundo opaco */
+    z-index: 1; /* defina um valor maior que o z-index do conteúdo para que fique na frente */
+}
+
+.acompanheDelivery {
+    position: absolute;
+    width: 701px;
+    height: 8px;
+    left: 800px;
+    top: 135px;
+
+    font-family: 'K2D', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 57px;
+
+    color: #FFFFFF;
+    text-shadow: 1.5px 1.5px 1.5px #000000;
+    z-index: 2;
+}
+
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 2rem;
+    outline: none;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.carousel-arrow:hover {
+    color: #d3d3d3;
+    z-index: 2;
+}
+
+.left-arrow {
+    left: 20px;
+    z-index: 2;
+}
+
+.right-arrow {
+    right: 20px;
+    z-index: 2;
+}
+
+
+.truck-info {
+    position: absolute;
+    width: 402px;
+    height: 609px;
+    left: 116px;
+    top: 253px;
+
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 2;
+}
+
+.truck-image {
+    position: absolute;
+    width: 312px;
+    height: 186px;
+    left: 55px;
+    top: 40px;
+    z-index: 2;
+}
+
+.truck-details {
+    position: absolute;
+    width: 215px;
+    height: 15px;
+    left: 29px;
+    top: 300px;
+
+    font-family: 'Jura';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 38px;
+
+    color: #FFFFFF;
+    z-index: 2;
+}
+
+.spinner {
+    text-align: center;
+    margin-top: 20%;
+    z-index: 2;
+}
+
+.map-image {
+    position: absolute;
+    height: 40%;
+    width: 40%;
+    margin-left: 800px;
+    margin-top: 375px;
+    z-index: 2;
+}
+
+.map-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.55); /* aqui você pode definir a cor do fundo opaco */
+    z-index: 3; /* defina um valor maior que o z-index do conteúdo para que fique na frente */
+}

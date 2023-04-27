@@ -55,31 +55,31 @@ const Login = () => {
       return;
     }
 
-    // try {
-    //   const response = await axios.post(`${REACT_APP_API_URL}/auth`, { email, password });
-    //   if (response.status === 200 && response.data.token) {
-    //     localStorage.setItem('token', response.data.token);
-    //     toast.success('Você foi autenticado com sucesso.');
-    //     // Navegar para a tela Home
-    
-    history.push('/home');
-    //     setEmail('')
-    //     setPassword('')
-    //     setEmailIconVisible(true);
-    //     setPasswordIconVisible(true);
-    //   } else {
-    //     toast.error('Credenciais inválidas');
-    //     setEmailIconVisible(true);
-    //     setPasswordIconVisible(true);
-    //   }
-    // } catch (error) {
-    //   console.error({ message: `Caiu no catch: ${error}` });
-    //   toast.error('Não foi possível realizar o login');
-    //   setEmail('')
-    //   setPassword('')
-    //   setEmailIconVisible(true);
-    //   setPasswordIconVisible(true);
-    // }
+    try {
+      const response = await axios.post(`${REACT_APP_API_URL}/auth`, { email, password });
+      if (response.status === 200 && response.data.token) {
+        localStorage.setItem('token', response.data.token);
+        toast.success('Você foi autenticado com sucesso.');
+        // Navegar para a tela Home
+
+        history.push('/home');
+        setEmail('')
+        setPassword('')
+        setEmailIconVisible(true);
+        setPasswordIconVisible(true);
+      } else {
+        toast.error('Credenciais inválidas');
+        setEmailIconVisible(true);
+        setPasswordIconVisible(true);
+      }
+    } catch (error) {
+      console.error({ message: `Caiu no catch: ${error}` });
+      toast.error('Não foi possível realizar o login');
+      setEmail('')
+      setPassword('')
+      setEmailIconVisible(true);
+      setPasswordIconVisible(true);
+    }
   };
 
 

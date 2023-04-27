@@ -19,9 +19,9 @@ const PaymentCheckout = () => {
     return (
         <div className="containerPayment">
             <Navbar />
-            <h1 className='info'>Informações {'>'}{'>'}</h1>
-            <h1 className='pag'>Pagamento {'>'}{'>'}</h1>
-            <h1 className='fim'>Fim</h1>
+            <h1 className='infoCheckout'>Informações {'>'}{'>'}</h1>
+            <h1 className='pagCheckout'>Pagamento {'>'}{'>'}</h1>
+            <h1 className='fimCheckout'>Fim</h1>
             <form onSubmit={handleSubmit} className='payment-form'>
                 <div className='payment-image'>
                     <img src={IconMoney} alt='paymentMethod' />
