@@ -106,7 +106,7 @@
 #name,
 #email,
 #password,
-#cpf-cnpj {
+#cpf-Cnpj {
     /* Rectangle 3 */
     position: absolute;
     width: 580px;
@@ -122,7 +122,7 @@
     margin-top: 50px;
 }
 
-#cpf-cnpj {
+#cpf-Cnpj {
     top: 417px;
     margin-top: 30px;
 }
@@ -137,11 +137,20 @@
     margin-top: -1px;
 }
 
+#role:focus,
+#name:focus,
+#email:focus,
+#password:focus,
+#cpf-Cnpj:focus {
+    outline: none;
+    border: 2px solid #000000;
+}
+
 #role::placeholder,
 #name::placeholder,
 #email::placeholder,
 #password::placeholder,
-#cpf-cnpj::placeholder {
+#cpf-Cnpj::placeholder {
     color: rgb(105, 107, 105);
     font-family: 'M PLUS Code Latin';
     font-size: 210%;

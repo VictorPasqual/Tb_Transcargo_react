@@ -17,16 +17,18 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.35); /* aqui você pode definir a cor do fundo opaco */
-    z-index: 1; /* defina um valor maior que o z-index do conteúdo para que fique na frente */
+    background-color: rgba(0, 0, 0, 0.35);
+    /* aqui você pode definir a cor do fundo opaco */
+    z-index: 1;
+    /* defina um valor maior que o z-index do conteúdo para que fique na frente */
 }
 
 .acompanheDelivery {
     position: absolute;
     width: 701px;
     height: 8px;
-    left: 800px;
-    top: 135px;
+    left: 750px;
+    top: 145px;
 
     font-family: 'K2D', sans-serif;
     font-style: normal;
@@ -74,8 +76,8 @@
     position: absolute;
     width: 402px;
     height: 609px;
-    left: 116px;
-    top: 253px;
+    left: 200px;
+    top: 252px;
 
     background-color: rgba(0, 0, 0, 0.85);
     z-index: 2;
@@ -92,15 +94,15 @@
 
 .truck-details {
     position: absolute;
-    width: 215px;
+    width: 255px;
     height: 15px;
     left: 29px;
-    top: 300px;
+    top: 295px;
 
-    font-family: 'Jura';
+    font-family: 'M PLUS Code Latin';
     font-style: normal;
     font-weight: 700;
-    font-size: 22px;
+    font-size: 30px;
     line-height: 38px;
 
     color: #FFFFFF;
@@ -113,22 +115,37 @@
     z-index: 2;
 }
 
+.tempo {
+    position: absolute;
+    width: 310px;
+    height: 12px;
+    left: 769px;
+    top: 410px;
+
+    font-family: 'K2D', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 28px;
+    z-index: 3;
+}
+
 .map-image {
     position: absolute;
-    height: 40%;
-    width: 40%;
-    margin-left: 800px;
-    margin-top: 375px;
+    height: 45%;
+    width: 46%;
+    margin-left: 755px;
+    margin-top: 328px;
     z-index: 2;
 }
 
-.map-image::before {
-    content: "";
+.content-image {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.55); /* aqui você pode definir a cor do fundo opaco */
-    z-index: 3; /* defina um valor maior que o z-index do conteúdo para que fique na frente */
+    width: 884px;
+    height: 438px;
+    left: 755px;
+    top: 422px;
+
+    background-color: rgba(0, 0, 0, 0.20);
+    z-index: 3;
 }

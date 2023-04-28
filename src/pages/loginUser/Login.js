@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import transcargoLogo from '../../assets/transcargoLogo.png'
 import iconEmail from '../../assets/logoemail.png'
@@ -35,6 +35,12 @@ const Login = () => {
 
   const handleEmailBlur = () => {
     setEmailFocused(false);
+    if (!email || !email.match(/^\S+@\S+\.\S+$/)) {
+      setEmailIconVisible(true);
+      toast.error('Por favor, insira um e-mail válido.');
+    } else {
+      setEmailIconVisible(false);
+    }
   };
 
   const handlePasswordFocus = () => {
@@ -43,6 +49,12 @@ const Login = () => {
 
   const handlePasswordBlur = () => {
     setPasswordFocused(false);
+    if (!password || password.length < 6) {
+      setPasswordIconVisible(true);
+      toast.error('A senha está incorreta!.');
+    } else {
+      setPasswordIconVisible(false);
+    }
   };
 
 
@@ -86,12 +98,14 @@ const Login = () => {
   return (
     <>
       <div>
+        <ToastContainer />
         <div>
           <img src={transcargoLogo} alt="Logo" className="logo" />
           <img src={novoFundo} alt='faixa' className="faixa" />
           <h1 className="bemvindo">Bem-Vindo </h1>
           <h1 className="devolta">de volta! </h1>
-          <p className="criarConta" onClick={() => history.push('/signup')}>Criar minha conta</p>
+          <p className="criarConta" onClick={() => history.push('/signup')}>Criar minha conta
+          </p>
         </div>
         <div className="faixa-branca">
           <h1 className="title">Entrar</h1>

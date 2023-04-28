@@ -46,7 +46,7 @@
   width: 1486px;
   height: 76px;
   left: 569px;
-  top: 560px;
+  top: 559px;
 
   font-family: 'K2D', sans-serif;
   font-style: normal;
@@ -94,6 +94,12 @@
   width: 450px;
   height: 58px;
   background: #03A7B1;
+}
+
+.notaFiscal:focus,
+.cpfCnpjTrack:focus {
+  outline: none;
+  border: 2px solid #ffffff;
 }
 
 .notaFiscal::placeholder,

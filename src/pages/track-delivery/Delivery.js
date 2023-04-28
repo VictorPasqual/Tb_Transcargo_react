@@ -3,7 +3,7 @@ import axios from 'axios';
 import { REACT_APP_API_URL } from '../../api/APIs';
 import Navbar from '../../components/navbar/NavBar';
 import Truck from '../../assets/truck.png';
-import Map from '../../assets/google-maps.jpg'
+import Map from '../../assets/google-maps.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { useHistory, Link } from 'react-router-dom';
@@ -20,41 +20,38 @@ const Delivery = (props) => {
   const [carregando, setCarregando] = useState(false);
 
 
-  useEffect(() => {
-    async function obterCargaETrajetoria() {
-      setCarregando(true);
+  async function obterCargaETrajetoria() {
+    setCarregando(true);
 
-      try {
-        const [cargaResponse, trajetoriaResponse] = await Promise.all([
-          axios.get(`${REACT_APP_API_URL}/cargas/caminhao/${notaFiscal || cpfCnpj}`),
-          axios.get(`${REACT_APP_API_URL}/cargas/${notaFiscal || cpfCnpj}`),
-        ]);
+    try {
+      const [cargaResponse, trajetoriaResponse] = await Promise.all([
+        axios.get(`${REACT_APP_API_URL}/cargas/caminhao/${notaFiscal || cpfCnpj}`),
+        axios.get(`${REACT_APP_API_URL}/cargas/${notaFiscal || cpfCnpj}`),
+      ]);
 
-        setCarga(cargaResponse.data);
-        setTrajetoria(trajetoriaResponse.data);
-        setErro(null);
-      } catch (error) {
-        setErro(error);
-        setCarga(null);
-        setTrajetoria(null);
-      }
-
-      setCarregando(false);
+      setCarga(cargaResponse.data);
+      setTrajetoria(trajetoriaResponse.data);
+      setErro(null);
+    } catch (error) {
+      setErro(error);
+      setCarga(null);
+      setTrajetoria(null);
     }
 
+    setCarregando(false);
+  }
+
+  useEffect(() => {
     obterCargaETrajetoria();
   }, [notaFiscal, cpfCnpj]);
-
 
   function handleTentarNovamente() {
     obterCargaETrajetoria();
   }
 
-
   if (erro) {
     return (
       <div>
-        <Navbar />
         <div>Erro ao carregar a carga e a trajetória</div>
         <button onClick={handleTentarNovamente}>Tentar novamente</button>
         <button onClick={() => history.goBack()}>Voltar</button>
@@ -73,9 +70,6 @@ const Delivery = (props) => {
     );
   }
 
-  const positionOrigem = [trajetoria.origemLat, trajetoria.origemLng];
-  const positionDestino = [trajetoria.destinoLat, trajetoria.destinoLng];
-
   return (
     <div className="truck-carousel-content">
       <Navbar />
@@ -92,10 +86,12 @@ const Delivery = (props) => {
           <p>Modelo: {carga.modelo}</p>
         </div>
       </div>
+      <p className='tempo'>Tempo extimado: 2 dias</p>
       <Link to={{
         pathname: '/mapa',
-        state: { positionOrigem: positionOrigem, positionDestino: positionDestino  }
+        state: { positionOrigemLat: trajetoria.origemLat, positionOrigemLng: trajetoria.origemLng, positionDestinoLat: trajetoria.destinoLat, positionDestinoLng: trajetoria.destinoLng }
       }}>
+        <div className="content-image"></div>
         <img
           className="map-image"
           src={Map}
@@ -103,7 +99,7 @@ const Delivery = (props) => {
         />
       </Link>
 
-    </div>
+    </div >
 
   );
 };

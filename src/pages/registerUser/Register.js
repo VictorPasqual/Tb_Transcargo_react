@@ -19,6 +19,20 @@ const schema = Yup.object().shape({
   role: Yup.string().required('O campo role é obrigatório'),
   name: Yup.string().required('O campo nome é obrigatório'),
   email: Yup.string().email('E-mail inválido').required('O campo e-mail é obrigatório'),
+    // .test('email-unique', 'Este e-mail já está cadastrado', async function (value) {
+    //   try {
+    //     const response = await axios.get(`${REACT_APP_API_URL}/users?email=${value}`);
+    //     console.log(response)
+    //     const user = response.data;
+    //     if (user) {
+    //       return false;
+    //     }
+    //     return true;
+    //   } catch (error) {
+    //     console.log(error);
+    //     return true;
+    //   }
+    // }),
   cpfCnpj: Yup.string()
     .test('cpf-cnpj', 'CPF ou CNPJ inválido', (value) => cpfValidator.isValid(value) || cnpjValidator.isValid(value))
     .required('O campo CPF/CNPJ é obrigatório'),
@@ -27,6 +41,7 @@ const schema = Yup.object().shape({
     .max(100, 'A senha deve ter no máximo 100 caracteres')
     .required('O campo senha é obrigatório'),
 });
+
 
 const Register = () => {
 
@@ -41,8 +56,8 @@ const Register = () => {
   const [formData, setFormData] = useState({
     role: '',
     name: '',
-    email: '',
     cpfCnpj: '',
+    email: '',
     password: '',
   });
   const [errors, setErrors] = useState({});
@@ -74,12 +89,12 @@ const Register = () => {
       const response = await axios.post(`${REACT_APP_API_URL}/users`, formData);
       console.log(response.data);
       toast.success('Você está registrado!');
-      setFormData({ role: '', name: '', email: '', cpfCnpj: '', password: '' });
+      // setFormData({ role: '', name: '', cpfCnpj: '', email: '', password: '' });
     } catch (error) {
-      setFormData({ role: '', name: '', email: '', cpfCnpj: '', password: '' });
+      // setFormData({ role: '', name: '', cpfCnpj: '', email: '', password: '' });
       console.log(error);
       if (error.name === 'ValidationError') {
-        toast.error('Houve um problema. Verifique os campos abaixo.');
+        toast.error('Este e-mail já está cadastrado!');
       } else if (error.name === 'SequelizeUniqueConstraintError') {
         toast.error('Este e-mail já está cadastrado!');
       } else {
@@ -139,7 +154,7 @@ const Register = () => {
           </div>
           <div>
             {showIcons.cpfCnpj && !formData.cpfCnpj && <img src={iconCpfCnpj} alt="Cpf/Cnpj Icon" id="iconCpfCnpj" />}
-            <input type="text" id="cpf-cnpj" name="cpf-cnpj" placeholder="CPF/CNPJ" value={formData.cpfCnpj} onChange={handleInputChange} required onBlur={handleInputBlur} />
+            <input type="text" id="cpf-Cnpj" name="cpfCnpj" placeholder="CPF/CNPJ" value={formData.cpfCnpj} onChange={handleInputChange} required onBlur={handleInputBlur} />
             {errors.cpfCnpj && <span>{errors.cpfCnpj}</span>}
           </div>
           <div>

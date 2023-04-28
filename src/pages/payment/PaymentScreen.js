@@ -47,7 +47,7 @@ const InfoAndPaymentScreen = () => {
 
     return (
         <div className="containerPayment">
-            <Navbar />
+      
             <h1 className='info'>Informações {'>'}{'>'}</h1>
             <h1 className='pag'>Pagamento {'>'}{'>'}</h1>
             <h1 className='fim'>Fim</h1>

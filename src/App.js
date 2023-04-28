@@ -9,11 +9,19 @@ import Checkout from './pages/payment/PaymentCheckout'
 import MapPage from './pages/track-delivery/MapPage';
 import Home from './pages/home/Home.js'
 import EntranceScreen from './components/loadingInicio/loadingInicio'; // Importe o componente EntranceScreen
+import jwt_decode from "jwt-decode";
+import Navbar from '../src/components/navbar/NavBar';
 
 
 
 function App() {
   const [isLoading, setIsLoading] = useState(true); // Adicione o estado isLoading para controlar a exibição da tela de entrada
+
+  function getUserRole() {
+    const token = localStorage.getItem("token");
+    const decoded = jwt_decode(token);
+    return decoded.Role;
+  }  
 
   useEffect(() => {
     setTimeout(() => {
@@ -28,22 +36,10 @@ function App() {
         // Renderize a tela de entrada enquanto isLoading for verdadeiro
         <EntranceScreen />
       ) : (
+        
         // Renderize o conteúdo do aplicativo depois que a animação de entrada terminar
         <Router>
-          {/* <nav>
-            <ul>
-              <li>
-                <Link to="/">Login</Link>
-              </li>
-              <li>
-                <Link to="/signup">Register</Link>
-              </li>
-              <li>
-                <Link to="/home">Home</Link>
-              </li>
-            </ul>
-          </nav> */}
-
+          <Navbar  role={getUserRole()}/>
           <Switch>
             <Route exact path="/" component={Login} />
             <Route path="/signup" component={Register} />

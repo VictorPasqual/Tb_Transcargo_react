@@ -18,7 +18,7 @@ const PaymentCheckout = () => {
 
     return (
         <div className="containerPayment">
-            <Navbar />
+       
             <h1 className='infoCheckout'>Informações {'>'}{'>'}</h1>
             <h1 className='pagCheckout'>Pagamento {'>'}{'>'}</h1>
             <h1 className='fimCheckout'>Fim</h1>

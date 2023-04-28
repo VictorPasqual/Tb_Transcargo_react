@@ -1,3 +1,3 @@
 module.exports = {
-    MAPS_API_KEY: 'AIzaSyDLJ95ck_YTb68KbvbzOPyBBcusG7Wt0VQ'
+    REACT_APP_GOOGLE_API_KEY: 'AIzaSyB5wNspKmISrnypkwveYLetIQB2Smqx1Nc'
 };

@@ -31,7 +31,7 @@ const TrackDelivery = () => {
 
     return (
         <div className='containerTrack'>
-            <Navbar />
+    
             <h3 className='acompanhe'>ACOMPANHE SUA ENTREGA
             </h3>
             <div className='imageTrack '>

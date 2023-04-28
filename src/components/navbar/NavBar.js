@@ -4,8 +4,9 @@ import iconSearch from '../../assets/lupa.png';
 import { useHistory } from "react-router-dom";
 import './NavBar.css'
 
-const Navbar = () => {
+const Navbar = ({ role }) => {
     const [showMenu, setShowMenu] = useState(false);
+    const [showMenuMC, setShowMenu2] = useState(false)
     const [showSearch, setShowSearch] = useState(false);
     const [marginLeft, setMarginLeft] = useState('695px');
     const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -13,6 +14,10 @@ const Navbar = () => {
 
     const handleServicosClick = () => {
         setShowMenu(!showMenu);
+    };
+
+    const handleServicosClickMC = () => {
+        setShowMenu2(!showMenuMC);
     };
 
     const handleSearchClick = () => {
@@ -48,14 +53,30 @@ const Navbar = () => {
                     {showMenu && (
                         <div className="servicos-menu">
                             <ul>
-                                <li onClick={() => history.push('/paymentScreen')}>Contratar Transportadora</li>
-                                <li onClick={() => history.push('/trackScreen')}>Rastrear Encomenda</li>
+                                {!['Motorista'].includes(role) && (
+                                    <>
+                                        <li onClick={() => history.push('/paymentScreen')}>Contratar Transportadora</li>
+                                        <li onClick={() => history.push('/trackScreen')}>Rastrear Encomenda</li>
+                                    </>
+                                )}
+                                {role === 'Motorista' && (
+                                    <li>Minhas Cargas</li>
+                                )}
                             </ul>
                         </div>
                     )}
                 </li>
                 <li><a href="#">Atendimento Online</a></li>
-                <li><a href="#">Minha Conta</a></li>
+                <li>
+                    <a href="#" onClick={handleServicosClickMC}>Minha Conta</a>
+                    {showMenuMC && (
+                        <div className="servicos-menu">
+                            <ul>
+                                <li onClick={() => history.push('/perfil')}>Ver Perfil</li>
+                                <li onClick={() => history.goBack}>Sair</li>
+                            </ul>
+                        </div>
+                    )}</li>
             </ul>
             <div className="search-icon">
                 <a href="#" onClick={handleSearchClick}><img src={iconSearch} alt="iconSearch" /></a>

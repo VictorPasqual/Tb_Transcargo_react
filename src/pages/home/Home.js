@@ -7,7 +7,7 @@ const HomeScreen = () => {
 
     return (
         <div className='container'>
-            <Navbar />
+      
             <h2 className='AgilidadeText'>
                 Agilidade e comprometimento
                 no transporte nacional e

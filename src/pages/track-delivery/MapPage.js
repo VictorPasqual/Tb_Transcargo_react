@@ -1,50 +1,132 @@
-import React, { useEffect, useState } from 'react';
-import { GoogleMap, useJsApiLoader, DirectionsRenderer } from '@react-google-maps/api';
-import { MAPS_API_KEY } from '../../config/KEYS'
+import React, { useState, useCallback, useMemo, useRef, useEffect } from "react";
+import {
+  GoogleMap,
+  Marker,
+  LoadScript,
+  DirectionsService,
+  DirectionsRenderer,
+} from "@react-google-maps/api";
 
-export default function MapPage(props) {
-    const { positionOrigem, positionDestino } = props.location.state;
-    const [directions, setDirections] = useState(null);
-    const { isLoaded } = useJsApiLoader({
-        id: "google-map-script",
-        googleMapsApiKey: `${MAPS_API_KEY}`
-    })
+import { REACT_APP_GOOGLE_API_KEY } from "../../config/KEYS";
+import "./MapPage.css";
 
-    useEffect(() => {
-        if (typeof window !== "undefined" && window.google && window.google.maps) {
-            const directionsService = new window.google.maps.DirectionsService();
+const MapPage = (props) => {
+  const {
+    positionOrigemLat,
+    positionOrigemLng,
+    positionDestinoLat,
+    positionDestinoLng,
+  } = props.location.state;
+  const [map, setMap] = useState(null);
+  const [pointA, setPointA] = useState(null);
+  const [pointB, setPointB] = useState(null);
+  const [origin, setOrigin] = useState(null);
+  const [destination, setDestination] = useState(null);
+  const [response, setResponse] = useState(null);
+  const directionsService = useRef(null);
+  const directionsRenderer = useRef(null);
+  const [position, setPosition] = useState(null);
 
-            directionsService.route(
-                {
-                    origin: positionOrigem,
-                    destination: positionDestino,
-                    travelMode: window.google.maps.TravelMode.DRIVING,
-                },
-                (result, status) => {
-                    if (status === window.google.maps.DirectionsStatus.OK) {
-                        setDirections(result);
-                    }
-                }
-            );
-        } else {
-            console.log('Lida com o erro de biblioteca não carregada aqui')
-        }
-    }, [positionOrigem, positionDestino]);
+  const traceRoute = useCallback(() => {
+    if (pointA && pointB) {
+      setOrigin({ lat: pointA.lat, lng: pointA.lng });
+      setDestination({ lat: pointB.lat, lng: pointB.lng });
+    }
+  }, [pointA, pointB]);
+
+  useEffect(() => {
+    const position = {
+      lat: Number(positionOrigemLat),
+      lng: Number(positionOrigemLng),
+    };
+
+    setPointA(position);
+    setPointB({
+      lat: Number(positionDestinoLat),
+      lng: Number(positionDestinoLng),
+    });
+    
+    setPosition(position);
+  }, [positionOrigemLat, positionOrigemLng, positionDestinoLat, positionDestinoLng]);
+
+  useEffect(() => {
+    traceRoute();
+  }, [traceRoute, pointA, pointB]);
+
+  useEffect(() => {
+    if (response !== null && directionsRenderer.current !== null) {
+      directionsRenderer.current.setDirections(response);
+    }
+  }, [response, directionsRenderer]);
+
+  const onMapLoad = useCallback((map) => {
+    setMap(map);
+  }, []);
+
+  const directionsCallback = useCallback((res) => {
+    if (res !== null && res.status === "OK") {
+      setResponse(res);
+    } else {
+      console.log(res);
+    }
+  }, []);
+
+  const directionsRendererOptions = useMemo(() => {
+    return {
+      directions: response,
+    };
+  }, [response]);
+
+  return (
+    <div className="map">
+      <LoadScript
+        googleMapsApiKey={REACT_APP_GOOGLE_API_KEY}
+        libraries={["places"]}
+        preventGoogleFontsLoading={true}
+      >
+
+        <GoogleMap
+          onLoad={onMapLoad}
+          mapContainerStyle={{ width: "100%", height: "100vh" }}
+          zoom={15}
+          center={position}
+        >
+          {/* Renderização dos marcadores */}
+          {pointA && <Marker position={pointA} />}
+          {pointB && <Marker position={pointB} />}
 
 
-    return (
-        <div style={{ height: "100vh", width: "100%" }}>
-            {isLoaded && positionOrigem && positionDestino && (
-                <GoogleMap
-                    mapContainerStyle={{ height: "100%", width: "100%" }}
-                    zoom={8}
-                    center={positionOrigem}
-                >
-                    {directions && (
-                        <DirectionsRenderer directions={directions} />
-                    )}
-                </GoogleMap>
-            )}
-        </div>
-    );
-}
+
+          {/* Renderização das direções */}
+          {origin !== null && destination !== null && (
+            <DirectionsService
+              options={{
+                origin,
+                destination,
+                travelMode: "DRIVING",
+              }}
+              callback={directionsCallback}
+              onLoad={(directionsService) =>
+                (directionsService.current = directionsService)
+              }
+            />
+          )}
+          {response !== null && (
+            <DirectionsRenderer
+              directions={response}
+              onLoad={(directionsRenderer) =>
+                (directionsRenderer.current = directionsRenderer)
+              }
+            />
+
+          )}
+
+        </GoogleMap>
+      </LoadScript>
+
+    </div>
+
+  );
+};
+
+export default MapPage;
