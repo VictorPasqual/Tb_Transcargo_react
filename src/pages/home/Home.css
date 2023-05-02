@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=K2D:wght@400;500;600;700&family=M+PLUS+Code+Latin:wght@300;400;500;600;700&display=swap');
 
-
 .container {
     position: absolute;
     background-image: url('../../assets/caminhoesFundo.jpg');
@@ -11,13 +10,6 @@
     bottom: 0;
     left: 0;
     right: 0;
-}
-
-.logoHome {
-    position: absolute;
-    margin-left: 75px;
-    margin-top: 30px;
-    z-index: 999;
 }
 
 .AgilidadeText {
@@ -55,7 +47,7 @@
     background-color: #000000;
     color: #FFFFFF;
     padding: 10px;
-    margin-top: 235px;
+    margin-top: 328px;
     margin-left: 104px;
     width: 785px;
     height: 35px;

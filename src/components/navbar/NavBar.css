@@ -1,12 +1,21 @@
+.logoHome {
+    position: absolute;
+    margin-left: 75px;
+    margin-top: 30px;
+    z-index: 5;
+}
+
+
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 102x;
+    z-index: 5;
 }
 
 .nav-links {
-    z-index: 2;
+    z-index: 5;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -17,7 +26,7 @@
 }
 
 .nav-links li {
-    z-index: 2;
+    z-index: 5;
     font-family: 'K2D', sans-serif;
     font-size: 20px;
     margin-top: 28px;
@@ -25,7 +34,7 @@
 }
 
 .nav-links li a {
-    z-index: 2;
+    z-index: 5;
     display: block;
     text-decoration: none;
     color: #fff;
@@ -39,14 +48,14 @@
 }
 
 .nav-links li a:hover {
-    z-index: 2;
+    z-index: 5;
     border: 2px solid #666;
     border-radius: 20px;
 }
 
 .search-icon {
     display: flex;
-    z-index: 2;
+    z-index: 5;
     cursor: pointer;
     margin-right: 80px;
     margin-top: 38px;
@@ -61,4 +70,5 @@
     margin-top: 20px;
     margin-left: 45px;
     margin-right: 20px;
+    z-index: 5;
 }

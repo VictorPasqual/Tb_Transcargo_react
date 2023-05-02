@@ -1,9 +1,8 @@
 import React from 'react';
 import './Home.css';
-import Navbar from '../../components/navbar/NavBar';
 
-const HomeScreen = () => {
-
+const HomeScreen = (props) => {
+    const { userRole } = props;
 
     return (
         <div className='container'>

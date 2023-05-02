@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logoTrans from '../../assets/logoTrans.png';
 import iconSearch from '../../assets/lupa.png';
+import jwtDecode from 'jwt-decode';
+import { JWT_SECRET } from '../../config/configJwt';
 import { useHistory } from "react-router-dom";
 import './NavBar.css'
 
-const Navbar = ({ role }) => {
+const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false);
-    const [showMenuMC, setShowMenu2] = useState(false)
+    const [showMenuMC, setShowMenu2] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
     const [marginLeft, setMarginLeft] = useState('695px');
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const history = useHistory()
+
+    // Obter o token JWT do armazenamento local ou de outra fonte
+    const token = localStorage.getItem('token');
+
+    // Decodificar o token JWT para obter as informações do usuário
+    const decodedToken = jwtDecode(token, JWT_SECRET);
+
+    // Obter o papel do usuário a partir das informações decodificadas do token
+    const userRole = decodedToken.role;
 
     const handleServicosClick = () => {
         setShowMenu(!showMenu);
@@ -25,13 +36,11 @@ const Navbar = ({ role }) => {
             setShowSearch(!showSearch);
             setMarginLeft('500px');
             setIsSearchOpen(true);
-            console.log(showSearch, marginLeft, isSearchOpen)
         }
         else {
             setShowSearch(!showSearch);
             setMarginLeft('695px');
             setIsSearchOpen(false);
-            console.log(showSearch, marginLeft, isSearchOpen)
         }
     };
 
@@ -39,6 +48,7 @@ const Navbar = ({ role }) => {
         event.preventDefault();
         // Do something with the search query
     };
+
 
     return (
         <nav className="navbar">
@@ -53,15 +63,15 @@ const Navbar = ({ role }) => {
                     {showMenu && (
                         <div className="servicos-menu">
                             <ul>
-                                {!['Motorista'].includes(role) && (
+                                {userRole !== 'Motorista' &&
                                     <>
                                         <li onClick={() => history.push('/paymentScreen')}>Contratar Transportadora</li>
                                         <li onClick={() => history.push('/trackScreen')}>Rastrear Encomenda</li>
                                     </>
-                                )}
-                                {role === 'Motorista' && (
+                                }
+                                {userRole === 'Motorista' &&
                                     <li>Minhas Cargas</li>
-                                )}
+                                }
                             </ul>
                         </div>
                     )}

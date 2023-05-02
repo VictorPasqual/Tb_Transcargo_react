@@ -5,6 +5,8 @@ import transcargoLogo from '../../assets/transcargoLogo.png'
 import iconEmail from '../../assets/logoemail.png'
 import iconCadeado from '../../assets/logocadeado.png'
 import novoFundo from '../../assets/novoFundo.png'
+import jwtDecode from "jwt-decode";
+import { JWT_SECRET } from '../../config/configJwt';
 import { REACT_APP_API_URL } from '../../api/APIs'
 import { useHistory } from "react-router-dom";
 import './Login.css';
@@ -17,17 +19,10 @@ const Login = () => {
   const [passwordIconVisible, setPasswordIconVisible] = useState(true);
   const [emailFocused, setEmailFocused] = useState(false);
   const [passwordFocused, setPasswordFocused] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const history = useHistory();
 
-
-  const handleEmailChange = ({ target }) => {
-    setEmail(target.value);
-  };
-
-  const handlePasswordChange = ({ target }) => {
-    setPassword(target.value);
-  };
 
   const handleEmailFocus = () => {
     setEmailFocused(true);
@@ -61,16 +56,23 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(`Email: ${email}, Password: ${password}`);
+    setLoading(true)
 
     if (!email || !password) {
       toast.error('Preencha os campos de email e senha');
       return;
-    }
+    };
 
     try {
       const response = await axios.post(`${REACT_APP_API_URL}/auth`, { email, password });
       if (response.status === 200 && response.data.token) {
-        localStorage.setItem('token', response.data.token);
+        const { user } = response.data;
+        console.log(`Usuário autenticado: ${user.name}, Role: ${user.role}`);
+
+        const tokenPayload = jwtDecode(response.data.token, JWT_SECRET);
+        const role = tokenPayload.role;
+        console.log(`Role do usuário autenticado: ${role}`);
+
         toast.success('Você foi autenticado com sucesso.');
         // Navegar para a tela Home
 
@@ -92,8 +94,10 @@ const Login = () => {
       setEmailIconVisible(true);
       setPasswordIconVisible(true);
     }
-  };
 
+
+    setLoading(false);
+  }
 
   return (
     <>
@@ -117,7 +121,7 @@ const Login = () => {
                 className="email"
                 placeholder="Email"
                 value={email}
-                onChange={handleEmailChange}
+                onChange={(e) => setEmail(e.target.value)}
                 onFocus={handleEmailFocus}
                 onBlur={handleEmailBlur}
               />
@@ -129,14 +133,14 @@ const Login = () => {
                 className="password"
                 placeholder="Senha"
                 value={password}
-                onChange={handlePasswordChange}
+                onChange={(e) => setPassword(e.target.value)}
                 onFocus={handlePasswordFocus}
                 onBlur={handlePasswordBlur}
               />
               {!passwordFocused && !password && <img src={iconCadeado} alt="Password Icon" className="iconCadeado" />}
             </div>
             <p className="losesenha">Esqueci a Senha</p>
-            <button type="submit" className="botao">ENTRAR</button>
+            <button type="submit" className="botao" disabled={loading}>{loading ? "Loading..." : "ENTRAR"}</button>
           </form>
         </div>
       </div >
