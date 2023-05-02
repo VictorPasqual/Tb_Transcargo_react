@@ -21,7 +21,7 @@ function App() {
     const token = localStorage.getItem("token");
     const decoded = jwt_decode(token);
     return decoded.Role;
-  }  
+  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -31,24 +31,23 @@ function App() {
 
   return (
     <>
-      {/* <Teste boxData={data}/> */}
       {isLoading ? (
         // Renderize a tela de entrada enquanto isLoading for verdadeiro
         <EntranceScreen />
       ) : (
-        
+
         // Renderize o conteúdo do aplicativo depois que a animação de entrada terminar
         <Router>
-          <Navbar  role={getUserRole()}/>
+          <Navbar role={getUserRole()} />
           <Switch>
             <Route exact path="/" component={Login} />
             <Route path="/signup" component={Register} />
-            <Route path="/home" component={Home}/>
-            <Route path="/trackScreen" component={Track}/>
-            <Route path="/delivery" component={TrackDelivery}/>
-            <Route path="/mapa" component={MapPage}/>
-            <Route path="/paymentScreen" component={Payment}/>
-            <Route path="/paymentCheckout" component={Checkout}/>
+            <Route path="/home" component={Home} />
+            <Route path="/trackScreen" component={Track} />
+            <Route path="/delivery" component={TrackDelivery} />
+            <Route path="/mapa" component={MapPage} />
+            <Route path="/paymentScreen" component={Payment} />
+            <Route path="/paymentCheckout" component={Checkout} />
           </Switch>
         </Router>
       )}
