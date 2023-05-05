@@ -1,12 +1,11 @@
 import React from 'react';
 import './Home.css';
 
-const HomeScreen = (props) => {
-    const { userRole } = props;
-
+const HomeScreen = () => {
+  
     return (
         <div className='container'>
-      
+
             <h2 className='AgilidadeText'>
                 Agilidade e comprometimento
                 no transporte nacional e

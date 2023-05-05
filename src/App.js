@@ -9,11 +9,11 @@ import Checkout from './pages/payment/PaymentCheckout'
 import MapPage from './pages/track-delivery/MapPage';
 import Home from './pages/home/Home.js'
 import EntranceScreen from './components/loadingInicio/loadingInicio';
-import Navbar from '../src/components/navbar/NavBar';
+import Navbar from './components/navbar/NavBar';
+import { UserContextProvider } from './hooks/auth';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-
 
   setTimeout(() => {
     setIsLoading(false);
@@ -25,25 +25,27 @@ function App() {
       {isLoading ? (
         <EntranceScreen />
       ) : (
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Login} />
-            <Route path="/signup" component={Register} />
-            <Route render={(props) => (
-              <Route>
-                <Navbar  />
-                <Switch>
-                  <Route path="/home" component={Home}  />
-                  <Route path="/trackScreen" component={Track}  />
-                  <Route path="/delivery" component={TrackDelivery} />
-                  <Route path="/mapa" component={MapPage} />
-                  <Route path="/paymentScreen" component={Payment} />
-                  <Route path="/paymentCheckout" component={Checkout} />
-                </Switch>
-              </Route>
-            )} />
-          </Switch>
-        </Router>
+        <UserContextProvider>
+          <Router>
+            <Switch>
+              <Route exact path="/" component={Login} />
+              <Route path="/signup" component={Register} />
+              <Route render={() => (
+                <Route>
+                  <Navbar />
+                  <Switch>
+                    <Route path="/home" component={Home} />
+                    <Route path="/trackScreen" component={Track} />
+                    <Route path="/delivery" component={TrackDelivery} />
+                    <Route path="/mapa" component={MapPage} />
+                    <Route path="/paymentScreen" component={Payment} />
+                    <Route path="/paymentCheckout" component={Checkout} />
+                  </Switch>
+                </Route>
+              )} />
+            </Switch>
+          </Router>
+        </UserContextProvider>
       )}
     </>
   );

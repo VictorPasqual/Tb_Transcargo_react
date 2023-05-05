@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import rastreamento from '../../assets/rastreamento.png'
-import Navbar from '../../components/navbar/NavBar';
 import { useHistory } from 'react-router-dom';
 import './Track.css';
 
@@ -21,12 +20,12 @@ const TrackDelivery = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
         // Cria um objeto com as informações que deseja passar para a página de entrega
-       
+
         // Passa o objeto como propriedade da página de entrega e redireciona o usuário
         history.push({
             pathname: '/delivery',
             state: { data: { notaFiscal: notaFiscal, cpfCnpj: cpfCnpj } }
-          })
+        })
     };
 
     return (

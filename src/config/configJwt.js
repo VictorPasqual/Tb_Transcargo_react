@@ -1,4 +1,0 @@
-module.exports = {
-    JWT_SECRET: 'fe0a0bf837aca6af2566cc9e5c77a4a6995f444d5480a50439e73c9d55689e3dfc6e9324cfbac9d4435c8db09e1b851e2ff06bb4b6203c3ae774e4821b4ed062',
-    JWT_EXPIRATION_TIME: '86400',
-};

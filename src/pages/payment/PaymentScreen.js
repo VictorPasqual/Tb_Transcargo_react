@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Navbar from '../../components/navbar/NavBar';
 import ImageForms from '../../assets/iconTrack.png'
 import { useHistory } from "react-router-dom";
 import './PaymentScreen.css'
@@ -29,8 +28,7 @@ const InfoAndPaymentScreen = () => {
             address.trim() === '' ||
             category.trim() === '' ||
             shippingType.trim() === ''
-        )
-        {
+        ) {
             alert('Por favor, preencha todos os campos.');
             history.push('/paymentCheckout')
         } else {
@@ -47,7 +45,7 @@ const InfoAndPaymentScreen = () => {
 
     return (
         <div className="containerPayment">
-      
+
             <h1 className='info'>Informações {'>'}{'>'}</h1>
             <h1 className='pag'>Pagamento {'>'}{'>'}</h1>
             <h1 className='fim'>Fim</h1>

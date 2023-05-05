@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { cpf as cpfValidator, cnpj as cnpjValidator } from 'cpf-cnpj-validator';
 import transcargoLogo from '../../assets/transcargoLogo.png'
-import { REACT_APP_API_URL } from '../../api/APIs';
+import api  from '../../api/APIs';
 import iconRole from '../../assets/role.png'
 import iconName from '../../assets/userInput.png'
 import iconCpfCnpj from '../../assets/cpf-cnpj-icon.png'
@@ -86,7 +86,7 @@ const Register = () => {
 
     try {
       await schema.validate(formData);
-      const response = await axios.post(`${REACT_APP_API_URL}/users`, formData);
+      const response = await axios.post(`${api}/users`, formData);
       console.log(response.data);
       toast.success('Você está registrado!');
       // setFormData({ role: '', name: '', cpfCnpj: '', email: '', password: '' });

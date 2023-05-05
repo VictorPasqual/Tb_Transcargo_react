@@ -18,9 +18,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.35);
-    /* aqui você pode definir a cor do fundo opaco */
     z-index: 1;
-    /* defina um valor maior que o z-index do conteúdo para que fique na frente */
 }
 
 .acompanheDelivery {
@@ -135,7 +133,7 @@
     height: 45%;
     width: 46%;
     margin-left: 755px;
-    margin-top: 328px;
+    margin-top: 423px;
     z-index: 2;
 }
 

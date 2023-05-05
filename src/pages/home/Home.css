@@ -86,38 +86,3 @@
 }
 
 
-
-.servicos-menu {
-    position: absolute;
-    top: 80px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 1;
-}
-
-.servicos-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.servicos-menu li {
-    margin-bottom: 10px;
-}
-
-.servicos-menu li:last-child {
-    margin-bottom: 0;
-}
-
-.servicos-menu li a {
-    text-decoration: none;
-    color: #000;
-}
-
-.servicos-menu li a:hover {
-    color: #007bff;
-}
-

@@ -23,7 +23,6 @@ const MapPage = (props) => {
   const [origin, setOrigin] = useState(null);
   const [destination, setDestination] = useState(null);
   const [response, setResponse] = useState(null);
-  const directionsService = useRef(null);
   const directionsRenderer = useRef(null);
   const [position, setPosition] = useState(null);
 
@@ -45,7 +44,7 @@ const MapPage = (props) => {
       lat: Number(positionDestinoLat),
       lng: Number(positionDestinoLng),
     });
-    
+
     setPosition(position);
   }, [positionOrigemLat, positionOrigemLng, positionDestinoLat, positionDestinoLng]);
 
@@ -70,12 +69,6 @@ const MapPage = (props) => {
       console.log(res);
     }
   }, []);
-
-  const directionsRendererOptions = useMemo(() => {
-    return {
-      directions: response,
-    };
-  }, [response]);
 
   return (
     <div className="map">

@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
-import axios from 'axios';
+import 'react-toastify/dist/ReactToastify.css';
 import transcargoLogo from '../../assets/transcargoLogo.png'
 import iconEmail from '../../assets/logoemail.png'
 import iconCadeado from '../../assets/logocadeado.png'
 import novoFundo from '../../assets/novoFundo.png'
-import jwtDecode from "jwt-decode";
-import { JWT_SECRET } from '../../config/configJwt';
-import { REACT_APP_API_URL } from '../../api/APIs'
 import { useHistory } from "react-router-dom";
 import './Login.css';
+import { useAuth } from "../../hooks/auth";
 
 
 const Login = () => {
@@ -23,6 +21,7 @@ const Login = () => {
 
   const history = useHistory();
 
+  const { authUser } = useAuth()
 
   const handleEmailFocus = () => {
     setEmailFocused(true);
@@ -52,51 +51,20 @@ const Login = () => {
     }
   };
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(`Email: ${email}, Password: ${password}`);
-    setLoading(true)
 
     if (!email || !password) {
       toast.error('Preencha os campos de email e senha');
       return;
-    };
-
-    try {
-      const response = await axios.post(`${REACT_APP_API_URL}/auth`, { email, password });
-      if (response.status === 200 && response.data.token) {
-        const { user } = response.data;
-        console.log(`Usuário autenticado: ${user.name}, Role: ${user.role}`);
-
-        const tokenPayload = jwtDecode(response.data.token, JWT_SECRET);
-        const role = tokenPayload.role;
-        console.log(`Role do usuário autenticado: ${role}`);
-
-        toast.success('Você foi autenticado com sucesso.');
-        // Navegar para a tela Home
-
-        history.push('/home');
-        setEmail('')
-        setPassword('')
-        setEmailIconVisible(true);
-        setPasswordIconVisible(true);
-      } else {
-        toast.error('Credenciais inválidas');
-        setEmailIconVisible(true);
-        setPasswordIconVisible(true);
-      }
-    } catch (error) {
-      console.error({ message: `Caiu no catch: ${error}` });
-      toast.error('Não foi possível realizar o login');
-      setEmail('')
-      setPassword('')
-      setEmailIconVisible(true);
-      setPasswordIconVisible(true);
     }
 
+    const authenticated = await authUser(email, password)
+    console.log(authenticated)
+    if(authenticated) {
+      history.push('/home')
+    }
 
-    setLoading(false);
   }
 
   return (

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { REACT_APP_API_URL } from '../../api/APIs';
-import Navbar from '../../components/navbar/NavBar';
+import api from '../../api/APIs';
 import Truck from '../../assets/truck.png';
 import Map from '../../assets/google-maps.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,7 +8,8 @@ import { useHistory, Link } from 'react-router-dom';
 import './Delivery.css';
 
 const Delivery = (props) => {
-  const { notaFiscal, cpfCnpj } = props.location.state?.data || {};
+  const notaFiscal = props.location.state && props.location.state.data && props.location.state.data.notaFiscal;
+  const cpfCnpj = props.location.state && props.location.state.data && props.location.state.data.cpfCnpj;
 
   const history = useHistory()
 
@@ -25,8 +24,8 @@ const Delivery = (props) => {
 
     try {
       const [cargaResponse, trajetoriaResponse] = await Promise.all([
-        axios.get(`${REACT_APP_API_URL}/cargas/caminhao/${notaFiscal || cpfCnpj}`),
-        axios.get(`${REACT_APP_API_URL}/cargas/${notaFiscal || cpfCnpj}`),
+        api.get(`/cargas/caminhao/${notaFiscal || cpfCnpj}`),
+        api.get(`/cargas/${notaFiscal || cpfCnpj}`),
       ]);
 
       setCarga(cargaResponse.data);
@@ -62,7 +61,6 @@ const Delivery = (props) => {
   if (!carga || !trajetoria) {
     return (
       <div>
-        <Navbar />
         <div className="spinner">
           <FontAwesomeIcon icon={faSpinner} spin size="3x" />
         </div>
@@ -72,7 +70,6 @@ const Delivery = (props) => {
 
   return (
     <div className="truck-carousel-content">
-      <Navbar />
       <h3 className='acompanheDelivery'>ACOMPANHE SUA ENTREGA</h3>
       <div className="truck-info">
         <img
@@ -89,7 +86,11 @@ const Delivery = (props) => {
       <p className='tempo'>Tempo extimado: 2 dias</p>
       <Link to={{
         pathname: '/mapa',
-        state: { positionOrigemLat: trajetoria.origemLat, positionOrigemLng: trajetoria.origemLng, positionDestinoLat: trajetoria.destinoLat, positionDestinoLng: trajetoria.destinoLng }
+        state: { 
+          positionOrigemLat: trajetoria.origemLat, 
+          positionOrigemLng: trajetoria.origemLng, 
+          positionDestinoLat: trajetoria.destinoLat, 
+          positionDestinoLng: trajetoria.destinoLng }
       }}>
         <div className="content-image"></div>
         <img
