@@ -20,6 +20,7 @@ function UserContextProvider({ children }) {
             setToken(response.data.token)
             setUser(userData)
             localStorage.setItem('token', response.data.token)
+            return true;
 
 
         } catch {
@@ -28,6 +29,12 @@ function UserContextProvider({ children }) {
             setLoading(false);
         }
     }
+
+    async function signOut() {
+        localStorage.removeItem('token');
+        setUser(null);
+    }
+    
 
     useEffect(() => {
         async function verificar() {
@@ -47,7 +54,7 @@ function UserContextProvider({ children }) {
 
     return (
 
-        <UserContext.Provider value={{ user, token, authUser, loading }}>
+        <UserContext.Provider value={{ user, token, authUser, signOut, loading }}>
             {children}
         </UserContext.Provider>
     );

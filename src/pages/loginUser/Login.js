@@ -17,8 +17,7 @@ const Login = () => {
   const [passwordIconVisible, setPasswordIconVisible] = useState(true);
   const [emailFocused, setEmailFocused] = useState(false);
   const [passwordFocused, setPasswordFocused] = useState(false);
-  const [loading, setLoading] = useState(false);
-
+  const [loading, setLoading] = useState(false)
   const history = useHistory();
 
   const { authUser } = useAuth()
@@ -59,12 +58,8 @@ const Login = () => {
       return;
     }
 
-    const authenticated = await authUser(email, password)
-    console.log(authenticated)
-    if(authenticated) {
-      history.push('/home')
-    }
-
+    await authUser(email, password)
+    
   }
 
   return (

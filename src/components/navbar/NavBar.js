@@ -14,7 +14,8 @@ const Navbar = () => {
 
     const history = useHistory()
 
-    const { user } = useAuth()
+    const { user, signOut } = useAuth()
+
     console.log(user)
 
     const handleServicosClick = () => {
@@ -38,6 +39,11 @@ const Navbar = () => {
         }
     };
 
+    const handleExit = () => {
+        signOut();
+    }
+
+
     const handleSearchSubmit = (event) => {
         event.preventDefault();
         // Do something with the search query
@@ -46,26 +52,27 @@ const Navbar = () => {
 
     return (
         <nav className="navbar">
-            <div className="logoHome" onClick={() => history.push('/home')}>
+            <div className="logoHome" onClick={() => history.push('/')}>
                 <a href="#"><img src={logoTrans} alt="logoTrans" className='logoTrans' /></a>
             </div>
             <ul className="nav-links" style={{ marginLeft }}>
-                <li><a href="#" onClick={() => history.push('/home')}>Início</a></li>
+                <li><a href="#" onClick={() => history.push('/')}>Início</a></li>
                 <li><a href="#">Quem Somos</a></li>
                 <li>
                     <a href="#" onClick={handleServicosClick}>Serviços +</a>
                     {showMenu && (
                         <div className="servicos-menu">
                             <ul>
-                                
-                                <>
-                                    <li onClick={() => history.push('/paymentScreen')}>Contratar Transportadora</li>
-                                    <li onClick={() => history.push('/trackScreen')}>Rastrear Encomenda</li>
+                                {user.role !== 'motorista' &&
+                                    <>
+                                        <li onClick={() => history.push('/paymentScreen')}>Contratar Transportadora</li>
+                                        <li onClick={() => history.push('/trackScreen')}>Rastrear Encomenda</li>
 
-                                </>
-                                <li>Minhas Cargas</li>
-
-
+                                    </>
+                                }
+                                {user.role === 'motorista' &&
+                                    <li>Minhas Cargas</li>
+                                }
                             </ul>
                         </div>
                     )}
@@ -77,7 +84,7 @@ const Navbar = () => {
                         <div className="servicos-menu">
                             <ul>
                                 <li onClick={() => history.push('/perfil')}>Ver Perfil</li>
-                                <li onClick={() => history.push('/')}>Sair</li>
+                                <li onClick={handleExit}>Sair</li>
                             </ul>
                         </div>
                     )}</li>
