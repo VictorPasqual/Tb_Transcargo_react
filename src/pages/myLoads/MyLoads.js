@@ -79,7 +79,7 @@ const MyLoads = () => {
                         className="carga-item"
                         onClick={() => handleCargaClick(cargas)}
                     >
-                        {cargas.notaFiscal}
+                        NF: {cargas.notaFiscal}
                     </div>
 
                 </div>
