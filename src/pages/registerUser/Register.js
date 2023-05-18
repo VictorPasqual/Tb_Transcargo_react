@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { cpf as cpfValidator, cnpj as cnpjValidator } from 'cpf-cnpj-validator';
 import transcargoLogo from '../../assets/transcargoLogo.png'
-import api  from '../../api/APIs';
+import api from '../../api/APIs';
 import iconRole from '../../assets/role.png'
 import iconName from '../../assets/userInput.png'
 import iconCpfCnpj from '../../assets/cpf-cnpj-icon.png'
@@ -13,26 +13,27 @@ import iconEmail from '../../assets/logoemail.png'
 import iconPassword from '../../assets/logocadeado.png'
 import novoFundo from '../../assets/novoFundo.png'
 import { useHistory } from 'react-router-dom';
+import { useAuth } from "../../hooks/auth";
 import './Register.css'
 
 const schema = Yup.object().shape({
   role: Yup.string().required('O campo role é obrigatório'),
   name: Yup.string().required('O campo nome é obrigatório'),
   email: Yup.string().email('E-mail inválido').required('O campo e-mail é obrigatório'),
-    // .test('email-unique', 'Este e-mail já está cadastrado', async function (value) {
-    //   try {
-    //     const response = await axios.get(`${REACT_APP_API_URL}/users?email=${value}`);
-    //     console.log(response)
-    //     const user = response.data;
-    //     if (user) {
-    //       return false;
-    //     }
-    //     return true;
-    //   } catch (error) {
-    //     console.log(error);
-    //     return true;
-    //   }
-    // }),
+  // .test('email-unique', 'Este e-mail já está cadastrado', async function (value) {
+  //   try {
+  //     const response = await axios.get(`${REACT_APP_API_URL}/users?email=${value}`);
+  //     console.log(response)
+  //     const user = response.data;
+  //     if (user) {
+  //       return false;
+  //     }
+  //     return true;
+  //   } catch (error) {
+  //     console.log(error);
+  //     return true;
+  //   }
+  // }),
   cpfCnpj: Yup.string()
     .test('cpf-cnpj', 'CPF ou CNPJ inválido', (value) => cpfValidator.isValid(value) || cnpjValidator.isValid(value))
     .required('O campo CPF/CNPJ é obrigatório'),
@@ -61,6 +62,10 @@ const Register = () => {
     password: '',
   });
   const [errors, setErrors] = useState({});
+
+  const { isAdmin } = useAuth();
+
+  console.log(isAdmin)
 
   const handleInputChange = async (event) => {
     const { name, value } = event.target;
@@ -118,25 +123,45 @@ const Register = () => {
         <form onSubmit={handleSubmit}>
           <div>
             {showIcons.role && !formData.role && <img src={iconRole} alt="Email Icon" id="iconRole" />}
-            <select id="role" style={{
-              width: 587,
-              height: 84,
-              color: '#696B69',
-              fontFamily: 'M PLUS Code Latin',
-              fontSize: '210%',
-              position: 'absolute',
-              textAlign: 'center',
-              left: 1350,
-              top: 283,
-              transform: 'translate(-50%, -50%)'
-            }} name="role" value={formData.role} onChange={handleInputChange} required>
-              <option value="" disaled>Role</option>
-              <option value="admin" style={{ fontSize: 20 }}>Admin</option>
-              <option value="motorista" style={{ fontSize: 20 }}>Motorista</option>
-              <option value="cliente" style={{ fontSize: 20 }}>Cliente</option>
+            <select
+              id="role"
+              style={{
+                width: 587,
+                height: 84,
+                color: '#696B69',
+                fontFamily: 'M PLUS Code Latin',
+                fontSize: '210%',
+                position: 'absolute',
+                textAlign: 'center',
+                left: 1350,
+                top: 283,
+                transform: 'translate(-50%, -50%)'
+              }}
+              name="role"
+              value={formData.role}
+              onChange={handleInputChange}
+              required
+            >
+              <option value="" disabled style={{ fontSize: 20, color: 'grey' }}>
+                Selecione um Role
+              </option>
+              {isAdmin && (
+                <option value="admin" style={{ fontSize: 20, fontWeight: 'bold' }}>
+                  Admin
+                </option>
+              )}
+              {isAdmin && (
+                <option value="motorista" style={{ fontSize: 20, fontWeight: 'bold' }}>
+                  Motorista
+                </option>
+              )}
+              <option value="cliente" style={{ fontSize: 20, fontWeight: 'bold' }}>
+                Cliente
+              </option>
             </select>
             {errors.role && <span>{errors.role}</span>}
           </div>
+
 
           <div>
             {showIcons.name && !formData.name && <img src={iconName} alt="Name Icon" id="iconName" />}

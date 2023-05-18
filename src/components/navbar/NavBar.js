@@ -71,7 +71,7 @@ const Navbar = () => {
                                     </>
                                 }
                                 {user.role === 'motorista' &&
-                                    <li>Minhas Cargas</li>
+                                    <li  onClick={() => history.push('/myloads')}>Minhas Cargas</li>
                                 }
                             </ul>
                         </div>

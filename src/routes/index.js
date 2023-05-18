@@ -9,6 +9,7 @@ import Checkout from '../pages/payment/PaymentCheckout'
 import MapPage from '../pages/track-delivery/MapPage';
 import Home from '../pages/home/Home.js'
 import Navbar from '../components/navbar/NavBar';
+import MyLoads from '../pages/myLoads/MyLoads'
 import { useAuth } from "../hooks/auth";
 
 
@@ -31,6 +32,7 @@ export default function Routes() {
                                 <Route path="/mapa" component={MapPage} />
                                 <Route path="/paymentScreen" component={Payment} />
                                 <Route path="/paymentCheckout" component={Checkout} />
+                                <Route path="/myloads" component={MyLoads}/>
                             </Switch>
                         </Route>
                     )} /> :

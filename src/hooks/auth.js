@@ -7,6 +7,7 @@ const UserContext = createContext();
 
 function UserContextProvider({ children }) {
     const [user, setUser] = useState();
+    const [isAdmin, setIsAdmin] = useState();
     const [token, setToken] = useState()
     const [loading, setLoading] = useState(false);
 
@@ -20,6 +21,25 @@ function UserContextProvider({ children }) {
             setToken(response.data.token)
             setUser(userData)
             localStorage.setItem('token', response.data.token)
+            return true;
+
+
+        } catch {
+            toast.error('Deu Erro!')
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    async function authUserAdmin (adminLoginEmail, adminLoginPassword) {
+        console.log(adminLoginEmail, adminLoginPassword)
+        try {
+            setLoading(true)
+
+            const response = await api.post('/authAdmin', { email: adminLoginEmail, password: adminLoginPassword });
+            const userData = response.data
+            setIsAdmin(userData)
+            console.log(userData)
             return true;
 
 
@@ -54,7 +74,7 @@ function UserContextProvider({ children }) {
 
     return (
 
-        <UserContext.Provider value={{ user, token, authUser, signOut, loading }}>
+        <UserContext.Provider value={{ user, isAdmin, token, authUser, authUserAdmin, signOut, loading }}>
             {children}
         </UserContext.Provider>
     );
