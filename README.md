@@ -14,7 +14,7 @@ Siga as etapas abaixo para iniciar o projeto:
 
 1. Clone este repositório em sua máquina local:
 
-    git clone https://github.com/VictorPasqual/tb_transcargo_react.git
+       git clone https://github.com/VictorPasqual/tb_transcargo_react.git
 
 Navegue até o diretório do projeto:
 
