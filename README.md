@@ -14,21 +14,21 @@ Siga as etapas abaixo para iniciar o projeto:
 
 1. Clone este repositório em sua máquina local:
 
-git clone https://github.com/seu-usuario/projeto-xyz.git
+    git clone https://github.com/
 
-    Navegue até o diretório do projeto:
+Navegue até o diretório do projeto:
 
-cd projeto-xyz
+    cd projeto-xyz
 
-    Instale as dependências do projeto executando o seguinte comando:
+Instale as dependências do projeto executando o seguinte comando:
 
-npm install
+    npm install
 
 Esse comando irá baixar e instalar todas as dependências necessárias para o projeto funcionar corretamente.
 Executando o projeto
 
 Após concluir a instalação das dependências, você pode iniciar o projeto executando o seguinte comando:
 
-npm start
+    npm start
 
 Isso iniciará o projeto e você poderá acessá-lo em seu navegador no endereço http://localhost:3000.
