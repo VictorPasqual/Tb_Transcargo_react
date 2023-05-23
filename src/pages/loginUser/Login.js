@@ -72,7 +72,7 @@ const Login = () => {
     setEmailFocused(false);
     if (!email || !email.match(/^\S+@\S+\.\S+$/)) {
       setEmailIconVisible(true);
-      toast.error('Por favor, insira um e-mail válido.');
+      console.log('O email está vazia ou incompleta!');
     } else {
       setEmailIconVisible(false);
     }
@@ -86,7 +86,7 @@ const Login = () => {
     setPasswordFocused(false);
     if (!password || password.length < 6) {
       setPasswordIconVisible(true);
-      toast.error('A senha está incorreta!.');
+      console.log('A senha está vazia ou incompleta!');
     } else {
       setPasswordIconVisible(false);
     }
@@ -100,7 +100,19 @@ const Login = () => {
       return;
     }
 
-    await authUser(email, password)
+    if (!email || !email.match(/^\S+@\S+\.\S+$/)) {
+      setEmailIconVisible(true);
+      toast.error('Por favor, insira um e-mail válido');
+    }
+
+    if (!password || password.length < 6) {
+      setPasswordIconVisible(true);
+      toast.error('A senha está incorreta!');
+    }
+
+    if (email || password) {
+      await authUser(email, password)
+    }
 
   }
 
@@ -152,7 +164,7 @@ const Login = () => {
           <div className="modal">
             <div className="modal-content">
               <h2>Selecionar perfil</h2>
-              <button onClick={() => history.push('/signup')}>Usuário</button>
+              <button onClick={handleCreateAccountSubmit}>Usuário</button>
               <div className="admin-login">
                 <label htmlFor="adminLogin">Login de Administrador</label>
                 <input

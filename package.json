@@ -51,7 +51,6 @@
   "resolve": {
     "fallback": {
       "crypto": "crypto-browserify",
-      "crypto": false,
       "buffer": "buffer/",
       "stream": "stream-browserify"
     }

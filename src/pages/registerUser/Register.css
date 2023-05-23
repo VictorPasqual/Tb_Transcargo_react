@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=K2D:wght@400;500;600;700&family=M+PLUS+Code+Latin:wght@300;400;500;600;700&display=swap');
 
-
 #logo {
     position: absolute;
     height: 45%;
@@ -16,15 +15,11 @@
     height: 78px;
     left: 1122px;
     top: -5px;
-
     font-family: 'K2D', sans-serif;
-    font-style: normal;
     font-weight: 500;
     font-size: 60px;
     line-height: 83px;
-
     color: #000000;
-
 }
 
 #preencha {
@@ -34,80 +29,62 @@
     height: 42px;
     left: 1200px;
     top: 111px;
-
     font-family: 'K2D', sans-serif;
-    font-style: normal;
     font-weight: 400;
     font-size: 27px;
     line-height: 42px;
-    /* identical to box height */
-
-
     color: rgba(175, 164, 164, 0.88);
+}
 
+#iconRole,
+#iconName,
+#iconCpfCnpj,
+#iconEmail,
+#iconPassword {
+    position: absolute;
+    transform: rotate(0.07deg);
 }
 
 #iconRole {
-    /* role 1 */
-
-
-    position: absolute;
     width: 67px;
     height: 61px;
     left: 1080px;
     top: 254px;
-
-    transform: rotate(0.07deg);
 }
 
 #iconName {
-    position: absolute;
     width: 50px;
     height: 51px;
     left: 1085px;
     top: 360px;
-
-
-    transform: rotate(0.07deg);
 }
 
 #iconCpfCnpj {
-    position: absolute;
     width: 65px;
     height: 55px;
     left: 1078px;
     top: 460px;
-
-    transform: rotate(0.07deg);
 }
 
 #iconEmail {
-    position: absolute;
     width: 61.96px;
     height: 48.92px;
     left: 1081px;
     top: 565px;
-
-    transform: rotate(0.07deg);
 }
 
 #iconPassword {
-    position: absolute;
     width: 51px;
     height: 55px;
     left: 1086px;
     top: 660px;
-
-    transform: rotate(0.07deg);
 }
-
 
 #role,
 #name,
 #email,
 #password,
 #cpf-Cnpj {
-    /* Rectangle 3 */
     position: absolute;
     width: 580px;
     height: 72px;
@@ -161,96 +138,59 @@
     transform: translate(-50%, -50%);
 }
 
-#bemvindo {
-    /* Bem - Vindo de volta! */
+#bemvindo,
+#devolta {
     position: absolute;
     width: 617px;
     height: 121px;
     left: 170px;
-    top: 460px;
-
     font-family: 'K2D', sans-serif;
-    font-style: normal;
-    font-weight: 700px;
-    font-size: 45px;
-    line-height: 60px;
-
-    color: #FFFFFF;
-}
-
-#devolta {
-    position: absolute;
-    width: 317px;
-    height: 121px;
-    left: 170px;
-    top: 510px;
-
-    font-family: 'K2D', sans-serif;
-    font-style: normal;
     font-weight: 700;
     font-size: 45px;
     line-height: 60px;
-
     color: #FFFFFF;
 }
 
-#acesse {
-    /* Acesse sua conta agora mesmo */
+#bemvindo {
+    top: 460px;
+}
 
+#devolta {
+    top: 510px;
+}
+
+#acesse,
+#losesenha {
     position: absolute;
     width: 446px;
     height: 38px;
     left: 175px;
-    top: 60%;
-
     font-family: 'M PLUS Code Latin';
-    font-style: normal;
     font-weight: 400;
     font-size: 24px;
     line-height: 30px;
-
     color: rgba(91, 88, 88, 0.73);
+}
 
+#acesse {
+    top: 60%;
 }
 
 #losesenha {
-    /* Esqueci minha senha. */
-
-
-    position: absolute;
-    width: 446px;
-    height: 38px;
-    left: 189px;
     top: 820px;
-
-    font-family: 'M PLUS Code Latin';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 30px;
-
-    color: rgba(91, 88, 88, 0.73);
-
 }
 
 #cadastrar {
-    /* Rectangle 7 */
-
     box-sizing: border-box;
-
     position: absolute;
     width: 414px;
     height: 68px;
     left: 1145px;
     top: 820px;
-
     font-family: 'K2D', sans-serif;
-    font-style: normal;
     font-weight: 700;
     font-size: 30px;
     line-height: 174.89%;
-    /* or 70px */
-
     cursor: pointer;
     align-items: center;
     color: #FFFFFF;
@@ -259,7 +199,6 @@
 }
 
 #faixa {
-    /* Rectangle 1 */
     position: absolute;
     width: 782px;
     height: 995px;
@@ -269,30 +208,20 @@
 }
 
 #entrar {
-    /* Rectangle 6 */
-
-
     box-sizing: border-box;
-
     position: absolute;
     width: 258px;
     height: 94px;
     left: 150px;
     top: 735px;
-
     background: #000000;
     border: 1.5px solid #FFFFFF;
     border-radius: 56px;
-
     font-family: 'K2D', sans-serif;
-    font-style: normal;
     font-weight: 700;
     font-size: 35px;
     line-height: 174.89%;
-    /* or 70px */
-
     align-items: center;
     cursor: pointer;
     color: #FFFFFF;
-
 }

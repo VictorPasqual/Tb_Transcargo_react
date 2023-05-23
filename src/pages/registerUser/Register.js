@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import * as Yup from 'yup';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -20,20 +19,6 @@ const schema = Yup.object().shape({
   role: Yup.string().required('O campo role é obrigatório'),
   name: Yup.string().required('O campo nome é obrigatório'),
   email: Yup.string().email('E-mail inválido').required('O campo e-mail é obrigatório'),
-  // .test('email-unique', 'Este e-mail já está cadastrado', async function (value) {
-  //   try {
-  //     const response = await axios.get(`${REACT_APP_API_URL}/users?email=${value}`);
-  //     console.log(response)
-  //     const user = response.data;
-  //     if (user) {
-  //       return false;
-  //     }
-  //     return true;
-  //   } catch (error) {
-  //     console.log(error);
-  //     return true;
-  //   }
-  // }),
   cpfCnpj: Yup.string()
     .test('cpf-cnpj', 'CPF ou CNPJ inválido', (value) => cpfValidator.isValid(value) || cnpjValidator.isValid(value))
     .required('O campo CPF/CNPJ é obrigatório'),
@@ -43,9 +28,7 @@ const schema = Yup.object().shape({
     .required('O campo senha é obrigatório'),
 });
 
-
 const Register = () => {
-
   const history = useHistory()
   const [showIcons, setShowIcons] = useState({
     role: true,
@@ -61,11 +44,8 @@ const Register = () => {
     email: '',
     password: '',
   });
-  const [errors, setErrors] = useState({});
 
   const { isAdmin } = useAuth();
-
-  console.log(isAdmin)
 
   const handleInputChange = async (event) => {
     const { name, value } = event.target;
@@ -73,9 +53,8 @@ const Register = () => {
     setFormData({ ...formData, [name]: value });
     try {
       await Yup.reach(schema, name).validate(value);
-      setErrors({ ...errors, [name]: '' });
     } catch (error) {
-      setErrors({ ...errors, [name]: error.message });
+      toast.error(error.message);
     }
   };
 
@@ -86,27 +65,22 @@ const Register = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(formData);
-
-
     try {
       await schema.validate(formData);
-      const response = await axios.post(`${api}/users`, formData);
+      const response = await api.post('/users', formData);
       console.log(response.data);
       toast.success('Você está registrado!');
-      // setFormData({ role: '', name: '', cpfCnpj: '', email: '', password: '' });
     } catch (error) {
-      // setFormData({ role: '', name: '', cpfCnpj: '', email: '', password: '' });
       console.log(error);
-      if (error.name === 'ValidationError') {
-        toast.error('Este e-mail já está cadastrado!');
-      } else if (error.name === 'SequelizeUniqueConstraintError') {
+      if (error.name === 'ValidationError' || error.name === 'SequelizeUniqueConstraintError') {
         toast.error('Este e-mail já está cadastrado!');
       } else {
         toast.error('Houve um problema. Verifique os campos abaixo.');
       }
     }
   };
+
+  console.log(isAdmin)
 
   return (
     <div>
@@ -125,6 +99,7 @@ const Register = () => {
             {showIcons.role && !formData.role && <img src={iconRole} alt="Email Icon" id="iconRole" />}
             <select
               id="role"
+              className="form-input"
               style={{
                 width: 587,
                 height: 84,
@@ -159,15 +134,15 @@ const Register = () => {
                 Cliente
               </option>
             </select>
-            {errors.role && <span>{errors.role}</span>}
-          </div>
 
+          </div>
 
           <div>
             {showIcons.name && !formData.name && <img src={iconName} alt="Name Icon" id="iconName" />}
             <input
               type="text"
               id="name"
+              className="form-input"
               name="name"
               placeholder="Name"
               value={formData.name}
@@ -175,23 +150,53 @@ const Register = () => {
               required
               onBlur={handleInputBlur}
             />
-            {errors.name && <span>{errors.name}</span>}
           </div>
+
           <div>
             {showIcons.cpfCnpj && !formData.cpfCnpj && <img src={iconCpfCnpj} alt="Cpf/Cnpj Icon" id="iconCpfCnpj" />}
-            <input type="text" id="cpf-Cnpj" name="cpfCnpj" placeholder="CPF/CNPJ" value={formData.cpfCnpj} onChange={handleInputChange} required onBlur={handleInputBlur} />
-            {errors.cpfCnpj && <span>{errors.cpfCnpj}</span>}
+            <input
+              type="text"
+              id="cpf-Cnpj"
+              className="form-input"
+              name="cpfCnpj"
+              placeholder="CPF/CNPJ"
+              value={formData.cpfCnpj}
+              onChange={handleInputChange}
+              required
+              onBlur={handleInputBlur}
+            />
           </div>
+
           <div>
             {showIcons.email && !formData.email && <img src={iconEmail} alt="Email Icon" id="iconEmail" />}
-            <input type="email" id="email" name="email" placeholder="Email" value={formData.email} onChange={handleInputChange} required onBlur={handleInputBlur} />
-            {errors.email && <span>{errors.email}</span>}
+            <input
+              type="email"
+              id="email"
+              className="form-input"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+              onBlur={handleInputBlur}
+            />
           </div>
+
           <div>
             {showIcons.password && !formData.password && <img src={iconPassword} alt="Password Icon" id="iconPassword" />}
-            < input type="password" id="password" name="password" placeholder="Senha" value={formData.password} onChange={handleInputChange} required onBlur={handleInputBlur} />
-            {errors.password && <span>{errors.password}</span>}
+            <input
+              type="password"
+              id="password"
+              className="form-input"
+              name="password"
+              placeholder="Senha"
+              value={formData.password}
+              onChange={handleInputChange}
+              required
+              onBlur={handleInputBlur}
+            />
           </div>
+
           <button type="submit" id="cadastrar">CADASTRAR</button>
         </form>
         <ToastContainer />

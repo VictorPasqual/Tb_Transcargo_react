@@ -31,16 +31,20 @@ function UserContextProvider({ children }) {
         }
     }
 
-    async function authUserAdmin (adminLoginEmail, adminLoginPassword) {
+    async function authUserAdmin(adminLoginEmail, adminLoginPassword) {
         console.log(adminLoginEmail, adminLoginPassword)
         try {
             setLoading(true)
+            if (adminLoginEmail && adminLoginPassword) {
+                const response = await api.post('/authAdmin', { email: adminLoginEmail, password: adminLoginPassword });
+                const userData = response.data
+                setIsAdmin(userData.user.role)
+                console.log(userData.user.role)
+                return true
+            } else {
+                setIsAdmin(false)
+            }
 
-            const response = await api.post('/authAdmin', { email: adminLoginEmail, password: adminLoginPassword });
-            const userData = response.data
-            setIsAdmin(userData)
-            console.log(userData)
-            return true;
 
 
         } catch {
@@ -54,7 +58,7 @@ function UserContextProvider({ children }) {
         localStorage.removeItem('token');
         setUser(null);
     }
-    
+
 
     useEffect(() => {
         async function verificar() {
