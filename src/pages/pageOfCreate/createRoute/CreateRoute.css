@@ -1,0 +1,75 @@
+.backgroundCR {
+    position: absolute;
+    background-image: url("../../../assets/createRoute.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -2;
+}
+
+.backgroundCR::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.7;
+    z-index: -1;
+}
+
+.create-route-container {
+    position: relative; /* Adicionado para permitir o posicionamento absoluto dos elementos internos */
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    border-radius: 4px;
+    color: #fff;
+    top: 225px; /* Adicione essa propriedade para afastar o formulário do topo */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.form-group input[type="text"] {
+    width: 95.5%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.buttonCR {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.buttonCR:hover {
+    background-color: #45a049;
+}

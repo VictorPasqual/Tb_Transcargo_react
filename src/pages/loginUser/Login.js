@@ -1,15 +1,15 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { RiEyeCloseLine, RiEyeLine } from 'react-icons/ri';
+import api from "../../api/APIs";
+import { useAuth } from "../../hooks/auth";
 import transcargoLogo from '../../assets/transcargoLogo.png'
 import iconEmail from '../../assets/logoemail.png'
 import iconCadeado from '../../assets/logocadeado.png'
 import novoFundo from '../../assets/novoFundo.png'
-import { useHistory } from "react-router-dom";
-import { useAuth } from "../../hooks/auth";
 import './Login.css';
-
-
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -18,15 +18,16 @@ const Login = () => {
   const [passwordIconVisible, setPasswordIconVisible] = useState(true);
   const [emailFocused, setEmailFocused] = useState(false);
   const [passwordFocused, setPasswordFocused] = useState(false);
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showModalPassword, setShowModalPassword] = useState(false);
   const [adminLoginEmail, setAdminLoginEmail] = useState('');
   const [adminLoginPassword, setAdminLoginPassword] = useState('');
+  const [forgoPasswordEmail, setForgoPasswordEmail] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const history = useHistory();
-
-  const { authUser, authUserAdmin } = useAuth()
-
+  const { authUser, authUserAdmin } = useAuth();
 
   const handleCreateAccount = () => {
     setShowModal(true);
@@ -34,35 +35,41 @@ const Login = () => {
 
   const handleCloseModal = () => {
     setShowModal(false);
+    setShowModalPassword(false);
   };
 
+  const handleForgotPassword = async () => {
+    try {
+      const response = await api.post('/validateEmail', { email: forgoPasswordEmail });
+      if (response.data.success) {
+        history.push("/changePassword", { email: forgoPasswordEmail });
+      } else {
+        toast.error('Usuário não encontrado. Por favor, verifique o email fornecido.');
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error('Ocorreu um erro ao solicitar a redefinição de senha. Por favor, tente novamente mais tarde.');
+    }
+  };
 
   const handleCreateAccountSubmit = async (e) => {
     e.preventDefault();
 
-    // Verificar se o perfil selecionado é de administrador
     if (adminLoginEmail && adminLoginPassword) {
-      console.log(adminLoginEmail, adminLoginPassword)
       try {
-        // Fazer a chamada para o backend para autenticar o adminLogin como administrador
-        const response = await authUserAdmin(adminLoginEmail, adminLoginPassword)
+        const response = await authUserAdmin(adminLoginEmail, adminLoginPassword);
         if (response) {
-          history.push("/signup")
+          history.push("/signup");
         } else {
-          toast.error("Este perfil não é Admin")
+          toast.error("Este perfil não é Admin");
         }
       } catch (error) {
-        // Exibir uma mensagem de erro genérica em caso de falha na requisição
         toast.error("Ocorreu um erro ao autenticar como administrador. Por favor, tente novamente mais tarde.");
       }
     } else {
-      // O perfil selecionado é de usuário
-      // Redirecione para a página de registro de usuário
-      await authUserAdmin(adminLoginEmail, adminLoginPassword)
       history.push("/signup");
     }
   };
-
 
   const handleEmailFocus = () => {
     setEmailFocused(true);
@@ -72,7 +79,6 @@ const Login = () => {
     setEmailFocused(false);
     if (!email || !email.match(/^\S+@\S+\.\S+$/)) {
       setEmailIconVisible(true);
-      console.log('O email está vazia ou incompleta!');
     } else {
       setEmailIconVisible(false);
     }
@@ -86,7 +92,6 @@ const Login = () => {
     setPasswordFocused(false);
     if (!password || password.length < 6) {
       setPasswordIconVisible(true);
-      console.log('A senha está vazia ou incompleta!');
     } else {
       setPasswordIconVisible(false);
     }
@@ -103,18 +108,21 @@ const Login = () => {
     if (!email || !email.match(/^\S+@\S+\.\S+$/)) {
       setEmailIconVisible(true);
       toast.error('Por favor, insira um e-mail válido');
+      return;
     }
 
     if (!password || password.length < 6) {
       setPasswordIconVisible(true);
       toast.error('A senha está incorreta!');
+      return;
     }
 
-    if (email || password) {
-      await authUser(email, password)
-    }
+    await authUser(email, password);
+  };
 
-  }
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
     <>
@@ -125,8 +133,7 @@ const Login = () => {
           <img src={novoFundo} alt='faixa' className="faixa" />
           <h1 className="bemvindo">Bem-Vindo </h1>
           <h1 className="devolta">de volta! </h1>
-          <p className="criarConta" onClick={handleCreateAccount}>Criar minha conta
-          </p>
+          <p className="criarConta" onClick={handleCreateAccount}>Criar minha conta</p>
         </div>
         <div className="faixa-branca">
           <h1 className="title">Entrar</h1>
@@ -145,18 +152,28 @@ const Login = () => {
               {!emailFocused && !email && <img src={iconEmail} alt="Email Icon" className="iconEmail" />}
             </div>
             <div>
-              <input
-                type="password"
-                className="password"
-                placeholder="Senha"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onFocus={handlePasswordFocus}
-                onBlur={handlePasswordBlur}
-              />
-              {!passwordFocused && !password && <img src={iconCadeado} alt="Password Icon" className="iconCadeado" />}
+              <div className="password-wrapper">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className="password"
+                  placeholder="Senha"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  onFocus={handlePasswordFocus}
+                  onBlur={handlePasswordBlur}
+                />
+                <button
+                  type="button"
+                  className="togglePassword"
+                  onClick={handleTogglePasswordVisibility}
+                >
+                  {showPassword ? <RiEyeCloseLine /> : <RiEyeLine />}
+                </button>
+                {!passwordFocused && !password && <img src={iconCadeado} alt="Password Icon" className="iconCadeado" />}
+              </div>
             </div>
-            <p className="losesenha">Esqueci a Senha</p>
+
+            <p className="losesenha" onClick={() => setShowModalPassword(true)}>Esqueci a Senha</p>
             <button type="submit" className="botao" disabled={loading}>{loading ? "Loading..." : "ENTRAR"}</button>
           </form>
         </div>
@@ -187,8 +204,25 @@ const Login = () => {
             </div>
           </div>
         )}
-
-      </div >
+        {showModalPassword && (
+          <div className="modal">
+            <div className="modal-content">
+              <div className="admin-login">
+                <label htmlFor="adminLogin">Digite seu E-mail</label>
+                <input
+                  type="email"
+                  placeholder="email"
+                  id="adminLogin"
+                  value={forgoPasswordEmail}
+                  onChange={(e) => setForgoPasswordEmail(e.target.value)}
+                />
+              </div>
+              <button onClick={handleCloseModal}>Cancelar</button>
+              <button onClick={handleForgotPassword}>Continuar</button>
+            </div>
+          </div>
+        )}
+      </div>
     </>
   );
 };

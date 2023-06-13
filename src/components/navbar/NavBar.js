@@ -71,7 +71,13 @@ const Navbar = () => {
                                     </>
                                 }
                                 {user.role === 'motorista' &&
-                                    <li  onClick={() => history.push('/myloads')}>Minhas Cargas</li>
+                                    <li onClick={() => history.push('/myloads')}>Minhas Cargas</li>
+                                }
+                                {user.role === 'admin' &&
+                                    <>
+                                        <li onClick={() => history.push('/createRoute')}>Criar Rotas</li>
+                                        <li onClick={() => history.push('/createTrucks')}>Criar Caminhões</li>
+                                    </>
                                 }
                             </ul>
                         </div>
@@ -83,7 +89,6 @@ const Navbar = () => {
                     {showMenuMC && (
                         <div className="servicos-menu">
                             <ul>
-                                <li onClick={() => history.push('/perfil')}>Ver Perfil</li>
                                 <li onClick={handleExit}>Sair</li>
                             </ul>
                         </div>

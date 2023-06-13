@@ -9,9 +9,11 @@ import Checkout from '../pages/payment/PaymentCheckout'
 import MapPage from '../pages/track-delivery/MapPage';
 import Home from '../pages/home/Home.js'
 import Navbar from '../components/navbar/NavBar';
-import MyLoads from '../pages/myLoads/MyLoads'
+import MyLoads from '../pages/myLoads/MyLoads';
+import CreateRoute from '../pages/pageOfCreate/createRoute/CreateRoute'
+import CreateTrucks from '../pages/pageOfCreate/createTrucks/CreateTrucks'
+import ChangePassword from '../pages/forgotPassword/ChangePassword.js'
 import { useAuth } from "../hooks/auth";
-
 
 
 export default function Routes() {
@@ -32,13 +34,16 @@ export default function Routes() {
                                 <Route path="/mapa" component={MapPage} />
                                 <Route path="/paymentScreen" component={Payment} />
                                 <Route path="/paymentCheckout" component={Checkout} />
-                                <Route path="/myloads" component={MyLoads}/>
+                                <Route path="/myLoads" component={MyLoads} />
+                                <Route path="/createRoute" component={CreateRoute}/>
+                                <Route path="/createTrucks" component={CreateTrucks}/>
                             </Switch>
                         </Route>
                     )} /> :
                     <>
                         <Route exact path="/" component={Login} />
                         <Route path="/signup" component={Register} />
+                        <Route path="/changePassword" component={ChangePassword}/>
                     </>
                 }
 

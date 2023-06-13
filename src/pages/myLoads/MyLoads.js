@@ -25,13 +25,14 @@ const CargaModal = ({ cargas, onClose }) => {
 
 const MyLoads = () => {
     const [cargas, setCargas] = useState([]);
+    const [rotas, setRotas] = useState([]);
     const [selectedCarga, setSelectedCarga] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [userId, setUserId] = useState(null);
 
     useEffect(() => {
         // Aqui você precisará capturar o ID do usuário logado do seu sistema de autenticação
-        const loggedUserId = 2; // Exemplo de ID do usuário logado
+        const loggedUserId = 1; // Exemplo de ID do usuário logado
         setUserId(loggedUserId);
     }, []);
 
@@ -45,11 +46,12 @@ const MyLoads = () => {
         try {
             const response = await api.get(`/trucks/${userId}/user`);
             const trucks = response.data;
-
-            if (trucks) {
-                const caminhaoId = trucks.id; // Utiliza o ID do primeiro caminhão encontrado
+            console.log(trucks);
+            if (trucks.length > 0) {
+                const caminhaoId = trucks[0].id; // Obtém o ID do primeiro caminhão encontrado
                 const cargasResponse = await api.get(`/trucks/${caminhaoId}/cargas`);
                 setCargas(cargasResponse.data);
+                setRotas(cargasResponse.data);
             } else {
                 console.log("O usuário não possui caminhões.");
             }
@@ -57,6 +59,7 @@ const MyLoads = () => {
             console.error("Erro ao obter as cargas:", error);
         }
     };
+
 
     const handleCargaClick = (cargas) => {
         setSelectedCarga(cargas);
@@ -67,6 +70,8 @@ const MyLoads = () => {
         setSelectedCarga(null);
         setShowModal(false);
     };
+
+    console.log(rotas)
 
     return (
         <div className="containerMyloads" >
@@ -81,7 +86,12 @@ const MyLoads = () => {
                     >
                         NF: {cargas.notaFiscal}
                     </div>
-
+                    <div>
+                        <h2>Informações da Rota do Caminhão</h2>
+                        Origem CEP: <p>{rotas.origemCEP}</p>
+                        Destino CEP: <p>{rotas.destinoCEP}</p>
+                        Distância: <p>{rotas.distancia}</p> km
+                    </div>
                 </div>
                 {selectedCarga && (
                     <CargaModal cargas={selectedCarga} onClose={handleCloseModal} />
