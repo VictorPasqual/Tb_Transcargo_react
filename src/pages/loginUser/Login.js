@@ -41,7 +41,7 @@ const Login = () => {
   const handleForgotPassword = async () => {
     try {
       const response = await api.post('/validateEmail', { email: forgoPasswordEmail });
-      if (response.data.success) {
+      if (response) {
         history.push("/changePassword", { email: forgoPasswordEmail });
       } else {
         toast.error('Usuário não encontrado. Por favor, verifique o email fornecido.');
@@ -181,7 +181,7 @@ const Login = () => {
           <div className="modal">
             <div className="modal-content">
               <h2>Selecionar perfil</h2>
-              <button onClick={handleCreateAccountSubmit}>Usuário</button>
+              <button className="buttonUser" onClick={handleCreateAccountSubmit}>Usuário</button>
               <div className="admin-login">
                 <label htmlFor="adminLogin">Login de Administrador</label>
                 <input

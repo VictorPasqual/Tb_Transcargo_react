@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { RiEyeCloseLine, RiEyeLine } from 'react-icons/ri'; // Importe os ícones do react-icons
@@ -14,6 +15,8 @@ const ChangePassword = () => {
   const [confirmNewPassword, setConfirmNewPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false); // Estado para controlar a visibilidade da senha
   const [loading, setLoading] = useState(false);
+  const location = useLocation();
+  const { email } = location.state || {};
 
   const history = useHistory();
 
@@ -46,17 +49,21 @@ const ChangePassword = () => {
       return;
     }
 
+    console.log(currentPassword)
+    console.log(newPassword)
+
     try {
       setLoading(true);
 
-      const response = await api.post('/changePassword', {
+      const response = await api.post('/change-password', {
+        email,
         currentPassword,
         newPassword,
       });
 
       if (response.status === 200) {
         toast.success('Senha alterada com sucesso.');
-        history.push("/dashboard");
+        history.push("/");
       } else {
         toast.error('Ocorreu um erro ao alterar a senha. Por favor, tente novamente mais tarde.');
       }
