@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Login from '../pages/loginUser/Login';
 import Register from '../pages/registerUser/Register';
 import Track from '../pages/track-delivery/Track'
@@ -15,39 +15,41 @@ import CreateTrucks from '../pages/pageOfCreate/createTrucks/CreateTrucks'
 import ChangePassword from '../pages/forgotPassword/ChangePassword.js'
 import { useAuth } from "../hooks/auth";
 
-
 export default function Routes() {
+    const { user } = useAuth();
 
-    const { user } = useAuth()
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+        <Route
+            {...rest}
+            render={(props) =>
+                user ? (
+                    <>
+                        <Navbar />
+                        <Component {...props} />
+                    </>
+                ) : (
+                    <Redirect to="/" />
+                )
+            }
+        />
+    );
 
     return (
         <Router>
             <Switch>
-                {!!user?.id ?
-                    <Route render={() => (
-                        <Route>
-                            <Navbar />
-                            <Switch>
-                                <Route exact path="/" component={Home} />
-                                <Route path="/trackScreen" component={Track} />
-                                <Route path="/delivery" component={TrackDelivery} />
-                                <Route path="/mapa" component={MapPage} />
-                                <Route path="/paymentScreen" component={Payment} />
-                                <Route path="/paymentCheckout" component={Checkout} />
-                                <Route path="/myLoads" component={MyLoads} />
-                                <Route path="/createRoute" component={CreateRoute}/>
-                                <Route path="/createTrucks" component={CreateTrucks}/>
-                            </Switch>
-                        </Route>
-                    )} /> :
-                    <>
-                        <Route exact path="/" component={Login} />
-                        <Route path="/signup" component={Register} />
-                        <Route path="/changePassword" component={ChangePassword}/>
-                    </>
-                }
-
-
+                <Route exact path="/" component={Login} />
+                <Route path="/signup" component={Register} />
+                <Route path="/changePassword" component={ChangePassword} />
+                <PrivateRoute path="/trackScreen" component={Track} />
+                <PrivateRoute path="/delivery" component={TrackDelivery} />
+                <PrivateRoute path="/mapa" component={MapPage} />
+                <PrivateRoute path="/paymentScreen" component={Payment} />
+                <PrivateRoute path="/paymentCheckout" component={Checkout} />
+                <PrivateRoute path="/myLoads" component={MyLoads} />
+                <PrivateRoute path="/createRoute" component={CreateRoute} />
+                <PrivateRoute path="/createTrucks" component={CreateTrucks} />
+                <PrivateRoute path="/" component={Home} />
             </Switch>
-        </Router>)
+        </Router>
+    );
 }

@@ -69,8 +69,10 @@ function UserContextProvider({ children }) {
                     headers: { Authorization: `${token}` },
                 });
                 console.log(response.data)
-            } else {
+            } else if (!token === null) {
                 toast.error('Deu Erro!')
+            } else {
+                toast.success('BEM VINDO A RAVE!!')
             }
         }
         verificar()
